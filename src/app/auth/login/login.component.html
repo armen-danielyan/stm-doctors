@@ -1,0 +1,120 @@
+<div class="wrapper">
+  <div class="bg-container pull-left"></div>
+  <!-- Content -->
+  <div class="content start-page pull-right">
+    <div class="inner-content">
+    <app-language-switcher></app-language-switcher>
+      <div class="clearfix"></div>
+      <h4 class="content-title">
+        Войти как специалист
+      </h4>
+      <div class="form-group-container">
+        <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+          <div class="form-group">
+            <app-phone-prefix [(ngModel)]="phone_number"
+                              name="phone_number"
+                              [maxLength]="18"
+                              locale="ru"
+                              [class.error]="f.submitted && f.controls.phone_number.invalid">
+
+            </app-phone-prefix>
+
+            <span class="help-block errorInputColor"
+                  *ngIf="f.submitted && f.controls.phone_number.invalid">
+              Введите корректный номер телефона
+            </span>
+          </div>
+          <div class="form-group">
+            <input
+              name="password"
+              type="password"
+              class="form-control"
+              placeholder="Пароль"
+              [(ngModel)]="password"
+              required
+              #psd="ngModel"
+              [class.error]="f.submitted && psd.errors && psd.errors.required">
+
+            <span class="help-block errorInputColor"
+                  *ngIf="f.submitted && psd.errors && psd.errors.required">
+              Обязательное поле
+            </span>
+          </div>
+          <div class="checkbox-info remember-info">
+            <input
+              type="checkbox"
+              name="remember"
+            >
+            <label>
+              Запомнить данные
+            </label>
+          </div>
+          <div class="alert alert-danger" *ngIf="errorMessage !==''">
+            <strong>{{ errorMessage }}</strong>
+          </div>
+          <button
+            type="submit"
+            class="btn btn-login btn-green"
+          >Авторизироваться
+          </button>
+        </form>
+
+
+        <div class="login-help">
+          <a (click)="forgotPass()">Забыли пароль</a>
+          <a (click)="help()">Проблемы со входом?</a>
+        </div>
+        <hr>
+        <h4 class="reg-title">Регистрация для специалистов</h4>
+        <button
+          type="button"
+          class="btn btn-register btn-blue"
+          (click)="redirectUserAgreement()">Зарегистрироваться
+        </button>
+      </div>
+      <!--<footer class="footer-help">-->
+        <!--<a data-toggle="modal"-->
+           <!--data-target="#myModal" >О сервисе</a>-->
+        <!--<a (click)="help()">Помощь</a>-->
+        <!--<a data-toggle="modal"-->
+           <!--data-target="#myModal2" >Условия</a>-->
+      <!--</footer>-->
+    </div>
+    <!--<footer class="footer">-->
+      <!--<div class="footer-inner">Doctor Smart ©2017</div>-->
+    <!--</footer>-->
+    <!--<div class="clearfix"></div>-->
+  </div>
+</div>
+
+<!--&lt;!&ndash; Modal 1 &ndash;&gt;-->
+<!--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">-->
+  <!--<div class="modal-dialog" role="document">-->
+    <!--<div class="modal-content">-->
+      <!--<div class="modal-header">-->
+        <!--<button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">-->
+          <!--<a aria-hidden="true">Закрыть</a></button>-->
+        <!--<h4 class="modal-title" id="myModalLabel">О сервисе</h4>-->
+      <!--</div>-->
+      <!--<div class="modal-body"  [innerHtml]="privacy_policy_html">-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
+<!--&lt;!&ndash; Modal 2 &ndash;&gt;-->
+<!--<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">-->
+  <!--<div class="modal-dialog" role="document">-->
+    <!--<div class="modal-content">-->
+      <!--<div class="modal-header">-->
+        <!--<button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">-->
+          <!--<a aria-hidden="true">Закрыть</a></button>-->
+        <!--<h4 class="modal-title" id="myModalLabel2">Условия</h4>-->
+
+      <!--</div>-->
+      <!--<div class="modal-body"  [innerHtml]="service_rules_html">-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
+
+<app-footer></app-footer>

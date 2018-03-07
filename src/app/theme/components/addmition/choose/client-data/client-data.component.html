@@ -1,0 +1,90 @@
+<div class="open-case-block bordered"
+  *ngIf="load === 'client-data'">
+
+  <div class="text-center">
+    <button class="btn btn-green btn-responsive mg-bt-20 test"
+      (click)="navigate('call-testing')">
+      Проверка связи
+    </button>
+
+    <div class="call-btn start-call mg-bt-20">
+      <a (click)="navigate('client-wait')">
+        <img src="assets/img/icons/camera.svg">
+        <span> Начать приём </span>
+      </a>
+    </div>
+
+  </div>
+  <div class="force-overflow">
+    <div class="open-case-block-content">
+      <div class="open-case-block-content-item info-row bold">
+        <div class="color-mid-gray f-16 bold">Дата обращения</div>
+        <div class="color-title-gray bold">{{appointment.requestTime}}</div>
+      </div>
+
+      <div class="open-case-block-content-item info-row bold">
+
+        <div class="color-mid-gray f-16 bold">
+          Пациент
+        </div>
+        <div class="color-title-gray bold">
+          {{appointment.first_name}} 
+          {{appointment.last_name}}, 
+          {{ data_patient }} 
+          ({{appointment.age}} {{appointment.yearValue}})
+        </div>
+      </div>
+
+      <div class="open-case-block-content-item info-row bold"
+        *ngIf="alergies !== []">
+        <div class="color-mid-gray f-16 bold">
+          Аллергии
+        </div>
+        <div class="color-title-gray bold">
+          <p *ngFor="let a of alergies">
+            {{a.name}}
+          </p>
+        </div>
+      </div>
+
+      <div class="open-case-block-content-item info-row bold"
+        *ngIf="disease !== []">
+        <div class="color-mid-gray f-16 bold">
+          Хронические заболевания
+        </div>
+        <div class="color-title-gray bold">
+          <p *ngFor="let d of disease">
+            {{d.name}}
+          </p>
+        </div>
+      </div>
+
+      <div class="open-case-block-content-item">
+        <p class="color-mid-gray f-16 bold mg-bt-20">
+          Описание проблемы
+        </p>
+
+        <p class="color-title-gray f-14">
+          {{appointment.message}}
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<app-client-wait
+[appointment]="appointment"
+  (client)="navigate($event)"
+  *ngIf="load === 'client-wait'"
+></app-client-wait>
+
+<app-call-testing
+  (testing)="navigate($event)"
+  *ngIf="load === 'call-testing'"
+></app-call-testing>
+
+
+
+
+

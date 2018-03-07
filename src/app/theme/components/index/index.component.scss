@@ -1,0 +1,21 @@
+.case-block-container .note {
+  top: 40%;
+  left: 14%;
+  position: absolute;
+  color: #d5d5d5;
+  text-align: center;
+}
+.f-36 {
+  font-size: 36px;
+}
+.case-not-open-container{
+  img{
+    width: 70%;
+  }
+}
+@media(min-width: 1200px) and (max-width: 1919px){
+  .f-36 {
+    font-size: 26px;
+  }
+
+}

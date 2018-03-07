@@ -1,0 +1,410 @@
+<div class="wrapper">
+  <div class="bg-container small pull-left"></div>
+  <!-- Content -->
+  <div class="content full pull-right">
+    <div class="inner-content">
+      <!--<button (click)="logoutUser()">LOGOUT</button>-->
+
+    <!--  <div class="back pull-left">
+        <a><img src="assets/img/icons/arrow-green.svg">Назад</a>
+      </div>-->
+      <app-language-switcher></app-language-switcher>
+      <div class="clearfix"></div>
+      <h3 class="content-title">
+        Регистрация
+      </h3>
+
+      <div class="user-info row">
+
+        <div class="col_md_4">
+          <form #f="ngForm" (ngSubmit)="onSubmitProfile(f)">
+            <div class="form-group-container">
+              <h4>Личная информация</h4>
+
+              <div class="form-group">
+                <input
+                  [attr.disabled]=" profileDisabled  ? '' : null"
+                  type="text"
+                  class="form-control"
+                  id="lastname"
+                  placeholder="Фамилия"
+                  name="last_name"
+                  required
+                  ngModel
+                  minlength="2"
+                  #lname="ngModel"
+                  [(ngModel)]="user.last_name">
+                <!--<span-->
+                  <!--class="help-block errorInputColor"-->
+                  <!--*ngIf="lname.invalid && lname.touched ">Обязательное поле!</span>-->
+              </div>
+
+
+              <div class="form-group">
+                <input
+                  [attr.disabled]=" profileDisabled  ? '' : null"
+                  type="text"
+                  class="form-control"
+                  id="firstname"
+                  placeholder="Имя"
+                  name="first_name"
+                  [(ngModel)]="user.first_name"
+                  required
+                  ngModel
+                  minlength="2"
+                  #fname="ngModel">
+                <!--<span class="help-block errorInputColor"-->
+                      <!--*ngIf="fname.invalid && fname.touched ">Обязательное поле!</span>-->
+              </div>
+              <div class="form-group">
+                <input
+                  [attr.disabled]=" profileDisabled  ? '' : null"
+                  type="text"
+                  class="form-control"
+                  id="patronymic"
+                  placeholder="Отчество"
+                  name="mid_name"
+                  [(ngModel)]="user.mid_name"
+                  required
+                  ngModel
+                  minlength="2"
+                  #mname="ngModel">
+                <!--<span class="help-block errorInputColor"-->
+                      <!--*ngIf="mname.invalid && mname.touched ">Обязательное поле!</span>-->
+              </div>
+
+              <div class="form-group">
+                <div class="select-gray">
+                  <div class="form-control select-styled"
+                  (click)="isActive()">{{genderName}}</div>
+                  <ul class="select-options" [ngStyle]="active && {'display': 'block'}">
+                    <li
+                      *ngFor="let gender of genders"
+                      (click)="onSelectedGender(gender.name, gender.id)"
+                      [id]="gender.id">{{gender.name}}</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <input
+                  [attr.disabled]=" profileDisabled  ? '' : null"
+                  type="date"
+                  class="form-control"
+                  id="birth-date"
+                  placeholder="Дата рождения / дд.мм.гггг"
+                  name="birth_date"
+                  [(ngModel)]="user.birth_date"
+                  required
+                  #bDay="ngModel">
+                <!--<span class="help-block errorInputColor"-->
+                      <!--*ngIf="bDay.invalid && bDay.touched  ">Обязательное поле!</span>-->
+              </div>
+
+
+              <div class="form-group">
+                <input
+                  [attr.disabled]=" profileDisabled  ? '' : null"
+                  (focus)="showCountriesDiv = true"
+                  type="text"
+                  class="form-control"
+                  placeholder="Страна"
+                  name="country"
+                  required
+                  [(ngModel)]="citySearchText"
+                  minlength="2"
+                  #country="ngModel"
+                  >
+                <div class="gotCities"
+                *ngIf="showCountriesDiv">
+                  <ul>
+                    <li *ngFor="let country of countries | filter : citySearchText:'title'"
+                      (click)="onSelectCountry(country)"
+                    > {{country.title}} </li>
+                  </ul>
+                </div>
+                <!--<span-->
+                  <!--class="help-block errorInputColor"-->
+                  <!--*ngIf="country.invalid && country.touched ">Обязательное поле!</span>-->
+              </div>
+
+              <div class="form-group">
+                <input
+                  [attr.disabled]=" profileDisabled  ? '' : null"
+                  (focus)="showCitiesDiv = true"
+                  (keyup)="getCities(lCity.value)"
+                  type="text"
+                  class="form-control"
+                  id="city"
+                  placeholder="Город проживания"
+                  name="city"
+                  [(ngModel)]="defaultCity"
+                  required
+                  ngModel
+                  #lCity="ngModel"
+                  minlength="2">
+
+                <!--<span class="help-block errorInputColor"-->
+                      <!--*ngIf="lCity.invalid && lCity.touched">Обязательное поле!</span>-->
+              </div>
+              <div class="gotCities"
+              *ngIf="showCitiesDiv">
+                <ul>
+                  <li *ngFor="let city of cities" (click)="onSelectCity(city)">{{city.title}}</li>
+                </ul>
+              </div>
+              <button
+                type="submit"
+                class="btn btn-blue"
+                [disabled]="f.invalid || profileDisabled">
+                Сохранить
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div class="col_md_4" *ngFor="let add of educationLength; let i = index">
+          <form #f="ngForm" (ngSubmit)="onSubmitEducations(f)">
+            <div class="form-group-container">
+              <h4>Информация об образовании</h4>
+              <div class="form-group">
+                <input
+                  [attr.disabled]=" i < educationCount  ? '' : null"
+                  type="text"
+                  class="form-control"
+                  id="profession"
+                  placeholder="Страна и город"
+                  name="profession"
+                  ngModel
+                  required
+                  #profession="ngModel">
+                <!--<span-->
+                  <!--class="help-block errorInputColor"-->
+                  <!--*ngIf="profession.invalid && profession.touched ">Обязательное поле!</span>-->
+              </div>
+              <div class="form-group">
+                <input
+                  [attr.disabled]=" i < educationCount  ? '' : null"
+                  type="text"
+                  class="form-control"
+                  id="ed_city_country"
+                  placeholder="Страна и город"
+                  name="country_city"
+                  ngModel
+                  required
+                  #country_city="ngModel">
+                <!--<span-->
+                  <!--class="help-block errorInputColor"-->
+                  <!--*ngIf="country_city.invalid && country_city.touched ">Обязательное поле!</span>-->
+              </div>
+              <div class="form-group">
+                <input
+                  [attr.disabled]=" i < educationCount  ? '' : null"
+                  type="text"
+                  class="form-control"
+                  id="university"
+                  placeholder="Название вуза"
+                  name="name"
+                  ngModel
+                  required
+                  #vuz_name="ngModel">
+                <!--<span-->
+                  <!--class="help-block errorInputColor"-->
+                  <!--*ngIf="vuz_name.invalid && vuz_name.touched ">Обязательное поле!</span>-->
+              </div>
+              <div class="form-group">
+                <input
+                  [attr.disabled]="i < educationCount  ? '' : null"
+                  type="text"
+                  class="form-control"
+                  id="faculty"
+                  placeholder="Название факультета"
+                  name="faculty"
+                  ngModel
+                  required
+                  #faculty="ngModel">
+                <!--<span-->
+                  <!--class="help-block errorInputColor"-->
+                  <!--*ngIf="faculty.invalid && faculty.touched ">Обязательное поле!</span>-->
+              </div>
+              <div class="form-group">
+                <input
+                  [attr.disabled]=" i < educationCount  ? '' : null"
+                  type="date"
+                  class="form-control"
+                  id="issue-date"
+                  placeholder="Дата выпуска"
+                  name="graduated"
+                  ngModel
+                  required
+                  #graduated="ngModel">
+                <!--<span-->
+                  <!--class="help-block errorInputColor"-->
+                  <!--*ngIf="graduated.invalid && graduated.touched ">Обязательное поле!</span>-->
+              </div>
+              <button
+                type="button"
+                class="btn btn-blue"
+                (click)="addEducation()"
+                [disabled]="f.invalid || i < educationCount">Добавить еще образование
+              </button>
+              <br>
+              <br>
+              <button
+                *ngIf="educationLength.length > 1"
+                type="button"
+                class="btn btn-blue"
+                (click)="deleteEducation(i)">Удалить
+              </button>
+              <br>
+              <br>
+              <button
+                type="submit"
+                class="btn btn-blue"
+                [disabled]="f.invalid || i < educationCount">Сохранить
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div class="col_md_4" *ngFor="let add of careerLength; let i = index">
+          <form #f="ngForm" (ngSubmit)="onSubmitCareer(f)">
+            <div class="form-group-container">
+              <h4>Карьера</h4>
+              <div class="form-group">
+                <input
+                  [attr.disabled]=" i < careerCount  ? '' : null"
+                  type="text"
+                  class="form-control"
+                  id="job_city_country"
+                  placeholder="Страна и город"
+                  name="country_city"
+                  required
+                  ngModel
+                  #job_city_country="ngModel">
+                <!--<span-->
+                  <!--class="help-block errorInputColor"-->
+                  <!--*ngIf="job_city_country.invalid && job_city_country.touched ">Обязательное поле!</span>-->
+              </div>
+              <div class="form-group">
+                <input
+                  [attr.disabled]=" i < careerCount  ? '' : null"
+                  type="text"
+                  class="form-control"
+                  id="company"
+                  placeholder="Название компании"
+                  name="name"
+                  required
+                  ngModel
+                  #job_company="ngModel">
+                <!--<span-->
+                  <!--class="help-block errorInputColor"-->
+                  <!--*ngIf="job_company.invalid && job_company.touched ">Обязательное поле!</span>-->
+              </div>
+              <div class="form-group">
+                <input
+                  [attr.disabled]=" i < careerCount  ? '' : null"
+                  type="text"
+                  class="form-control"
+                  id="position"
+                  placeholder="Должность">
+              </div>
+              <div class="form-group">
+                <input
+                  [attr.disabled]=" i < careerCount  ? '' : null"
+                  type="date"
+                  class="form-control"
+                  id="start-date"
+                  placeholder="Дата начала работы"
+                  name="start_date"
+                  required
+                  ngModel
+                  #start_date="ngModel">
+                <!--<span-->
+                  <!--class="help-block errorInputColor"-->
+                  <!--*ngIf="start_date.invalid && start_date.touched ">Обязательное поле!</span>-->
+              </div>
+              <div class="form-group">
+                <input
+                  [attr.disabled]=" i < careerCount  ? '' : null"
+                  type="text"
+                  class="form-control"
+                  id="experience"
+                  placeholder="Общий стаж"
+                  name="experience"
+                  required
+                  ngModel
+                  #experience="ngModel">
+                <!--<span-->
+                  <!--class="help-block errorInputColor"-->
+                  <!--*ngIf="experience.invalid && experience.touched ">Обязательное поле!</span>-->
+              </div>
+              <div class="form-group">
+                <textarea
+                  [attr.disabled]=" i < careerCount  ? '' : null"
+                  class="form-control advisor-info"
+                  rows="5"
+                  id="comment"
+                  placeholder="ФИО рекомендателя и его конакты"
+                  name="recommender"
+                  ngModel
+                  #recommender="ngModel"></textarea>
+              </div>
+              <button
+                (click)="addCareer()"
+                type="button"
+                class="btn btn-blue"
+                [disabled]="f.invalid || i < educationCount">Добавить еще место работы
+              </button>
+              <br>
+              <br>
+              <button
+                *ngIf="careerLength.length > 1"
+                (click)="deleteCareer(i)"
+                type="button"
+                class="btn btn-blue">Удалить
+              </button>
+              <br>
+              <br>
+              <button
+                type="submit"
+                class="btn btn-blue"
+                [disabled]="f.invalid || i < educationCount">Сохранить
+              </button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+
+
+      <div class="flex-row-center user-info-continue">
+        <div class="col_md_4">
+          <hr>
+          <button
+            type="button"
+            class="btn btn-green">Продолжить
+          </button>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+  <div class="clearfix"></div>
+  <div class="footer-help-full full pull-right flex-row-center">
+    <div class="col_md_4">
+      <div class="footer-help">
+        <a href="">О сервисе</a>
+        <a href="">Помощь</a>
+        <a href="">Условия</a>
+      </div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+</div>
+<footer class="footer full">
+  <div class="footer-inner">Doctor Smart ©2017</div>
+</footer>
+
+

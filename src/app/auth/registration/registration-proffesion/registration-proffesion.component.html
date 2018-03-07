@@ -1,0 +1,64 @@
+<div class="wrapper">
+  <div class="bg-container pull-left"></div>
+  <!-- Content -->
+  <div class="content pull-right">
+    <div class="inner-content reg-user">
+      <div class="back pull-left">
+        <!--<a href=""><img src="assets/img/icons/arrow-green.svg">Назад</a>-->
+      </div>
+      <app-language-switcher></app-language-switcher>
+      <div class="clearfix"></div>
+      <h3 class="content-title">
+        Регистрация
+      </h3>
+      <form>
+        <div class="form-group-container"  (clickOutside)="clickOut()">
+          <div class="mg-bt-30 clearfix">
+            <span class="color-title-gray f-18 bold pull-left">Профессия</span>
+            <span class="pull-right">шаг 1 из 4</span>
+          </div>
+          <div class="form-group">
+            <div class="select-gray">
+              <div class="form-control select-styled" (click)="isOpenedCategor()" [ngClass]="{'active ': isOpenCat}" >{{default_category}}</div>
+              <ul class="select-options"
+                  ([ngModel])="category"
+              >
+                <li
+                  *ngFor="let sub of category"
+                  (click)="onSelectSpecialization(sub)"
+                >
+                  {{sub.caption_key}}</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="select-gray">
+              <div class="form-control select-styled" (click)="isOpenedProf()" [ngClass]="{'active ': isOpenProf}">{{default_profession}}</div>
+              <ul class="select-options">
+                <li  *ngFor="let sub of proffesion"
+                     (click)="onSelectProf(sub)"
+                >
+                  {{sub.caption_key}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="bottom">
+          <hr>
+          <button
+            type="button"
+            (click)="onSubmit()"
+            [disabled]="fValid_1"
+            class="btn btn-green">Продолжить</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+  <div class="clearfix"></div>
+</div>
+<!--<footer class="footer">-->
+  <!--<div class="footer-inner">Doctor Smart ©2017</div>-->
+<!--</footer>-->
+<app-footer></app-footer>

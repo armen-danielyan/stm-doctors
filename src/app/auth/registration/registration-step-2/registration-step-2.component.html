@@ -1,0 +1,113 @@
+<div class="wrapper">
+  <div class="bg-container pull-left"></div>
+  <!-- Content -->
+  <div class="content pull-right">
+    <div class="inner-content">
+      <app-language-switcher></app-language-switcher>
+      <div class="clearfix"></div>
+      <h3 class="content-title">
+        Регистрация
+      </h3>
+      <div class="form-group-container">
+        <div class="form-group">
+          <input
+            type="tel"
+            class="form-control"
+            id="tel"
+            placeholder="+7 (978) 020-05-25"
+            value="{{ phone }}"
+            [(ngModel)]="phone"
+            readonly>
+          <a
+            class="change-link"
+            (click)="redirectChangeNumber()">Изменить</a>
+        </div>
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="confirmationCode"
+            id="code"
+            placeholder="Код из SMS"
+            required
+            ngModel
+            (keyup.enter)="onConfirmRegistration()">
+          <span class="help-block errorInputColor"
+                *ngIf="errorMessage !==''">
+              {{ errorMessage }}</span>
+        </div>
+      </div>
+      <p
+        *ngIf="count_resend"
+        class="code-time">
+        Вы сможете запросить
+        <br>
+        повторный код через: {{show_waiting_time}}</p>
+      <a
+        *ngIf="!count_resend"
+        class="double-code color-green-teal"
+        (click)="resendCode()">Выслать повторный код</a>
+      <button
+        type="button"
+        class="btn btn-green"
+        (click)="onConfirmRegistration()">Продолжить
+      </button>
+      <div class="agreement-block continue">
+        Нажимая кнопку «Продолжить», я даю согласие на обработку моих персональных данных в соответствии с
+        <a data-toggle="modal"
+           data-target="#myModal" class="color-green-teal">Условиями использования</a>
+      </div>
+      <!--<div class="alert alert-danger" *ngIf="errorMessage !==''">-->
+      <!--<strong>{{ errorMessage }}</strong>-->
+      <!--</div>-->
+      <hr>
+      <button
+        type="button"
+        class="btn btn-blue"
+        (click)="redirectStartPage()">У меня уже есть аккаунт
+      </button>
+      <!--<div class="footer-help">-->
+        <!--<a data-toggle="modal"-->
+           <!--data-target="#myModal">О сервисе</a>-->
+        <!--<a (click)="help()">Помощь</a>-->
+        <!--<a data-toggle="modal"-->
+           <!--data-target="#myModal2">Условия</a>-->
+      <!--</div>-->
+    </div>
+    <!--<footer class="footer">-->
+      <!--<div class="footer-inner">Doctor Smart ©2017</div>-->
+    <!--</footer>-->
+  </div>
+  <!--<div class="clearfix"></div>-->
+</div>
+
+<!--&lt;!&ndash; Modal 1 &ndash;&gt;-->
+<!--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">-->
+  <!--<div class="modal-dialog" role="document">-->
+    <!--<div class="modal-content">-->
+      <!--<div class="modal-header">-->
+        <!--<button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">-->
+          <!--<a aria-hidden="true">Закрыть</a></button>-->
+        <!--<h4 class="modal-title" id="myModalLabel">О сервисе</h4>-->
+      <!--</div>-->
+      <!--<div class="modal-body" [innerHtml]="privacy_policy_html">-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
+<!--&lt;!&ndash; Modal 2 &ndash;&gt;-->
+<!--<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">-->
+  <!--<div class="modal-dialog" role="document">-->
+    <!--<div class="modal-content">-->
+      <!--<div class="modal-header">-->
+        <!--<button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">-->
+          <!--<a aria-hidden="true">Закрыть</a></button>-->
+        <!--<h4 class="modal-title" id="myModalLabel2">Условия</h4>-->
+      <!--</div>-->
+      <!--<div class="modal-body" [innerHtml]="service_rules_html">-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
+
+<app-footer></app-footer>

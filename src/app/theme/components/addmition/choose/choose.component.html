@@ -1,0 +1,87 @@
+<div class="content-lg">
+  <div class="inner-content">
+    <div class="case-block-container pull-left">
+      <div class="status-buttons mg-bt-40">
+        <button type="button" class="btn btn-sky-blue btn-responsive btn-round">В ожидании</button>
+        <!--<button type="button" class="btn btn-blue btn-responsive btn-round">Рассматриваются</button>-->
+        <button type="button" class="btn btn-blue btn-responsive btn-round">Завершенные</button>
+      </div>
+      <div class="case-block bordered mg-bt-40 active">
+        <div class="patient-info mg-bt-20">
+          <div class="pic-container"></div>
+          <div>
+            <p class="f-14 bold"><span class="color-violet">Саманта Ли Охао</span>&nbsp;<span class="color-mid-gray">(25 лет)</span>
+            </p>
+            <p class="f-12 color-mid-gray"><img src="assets/img/icons/callendar-icon.svg">26.08.17 09:35</p>
+          </div>
+        </div>
+        <button
+          type="button"
+          class="btn btn-blue btn-responsive pull-right"
+          (click)="onNavigate()">Подробнее
+        </button>
+        <div>
+          <h4 class="color-title-gray f-16">Боль в поджелудочной и отказ печени</h4>
+          <p class="desease-text">А вот художественное описание дождя просто обязано быть захватывающим произведением,
+            памятником
+            прозы или, на худой конец, быть красивым и интересным. Обязательные его признаки – всевозможные
+            эпитеты, речевые обороты и прочие средства выражения чувств и явлений природы, присущие нашему
+            великому и могучему русскому языку.</p>
+        </div>
+      </div>
+      <div class="case-block bordered mg-bt-40 active">
+        <div class="patient-info mg-bt-20">
+          <div class="pic-container"></div>
+          <div>
+            <p class="f-14 bold"><span class="color-violet">Максим Варава</span>&nbsp;<span class="color-mid-gray">(25 лет)</span>
+            </p>
+            <p class="f-12 color-mid-gray"><img src="assets/img/icons/callendar-icon.svg">
+              26.08.17 09:35</p>
+          </div>
+        </div>
+        <button type="button" class="btn btn-blue btn-responsive pull-right">Подробнее</button>
+        <div>
+          <h4 class="color-title-gray f-16">Головная боль, суточная</h4>
+          <p class="desease-text">А вот художественное описание дождя просто обязано быть захватывающим произведением,
+            памятником
+            прозы или, на худой конец, быть красивым и интересным. Обязательные его признаки – всевозможные
+            эпитеты, речевые обороты и прочие средства выражения чувств и явлений природы, присущие нашему
+            великому и могучему русскому языку.</p>
+        </div>
+      </div>
+      <div class="case-block bordered mg-bt-40 active">
+        <div class="patient-info mg-bt-20">
+          <div class="pic-container"></div>
+          <div>
+            <p class="f-14 bold"><span class="color-violet">Анна Неила</span>&nbsp;<span
+              class="color-mid-gray">(25 лет)</span></p>
+            <p class="f-12 color-mid-gray"><img src="assets/img/icons/callendar-icon.svg">
+              26.08.17 09:35</p>
+          </div>
+        </div>
+        <button type="button" class="btn btn-blue btn-responsive pull-right">Подробнее</button>
+        <div>
+          <h4 class="color-title-gray f-16">Головная боль, суточная</h4>
+          <p class="desease-text">А вот художественное описание дождя просто обязано быть захватывающим произведением,
+            памятником
+            прозы или, на худой конец, быть красивым и интересным. Обязательные его признаки – всевозможные
+            эпитеты, речевые обороты и прочие средства выражения чувств и явлений природы, присущие нашему
+            великому и могучему русскому языку.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="open-case-block-container pull-right">
+      <ng-container *ngIf="load==='empty'">
+        <div class="case-not-open-container">
+          <img src="assets/img/icons/cart.svg" class="mg-bt-30">
+          <p class="color-mid-gray f-16">Выберите дело, чтобы увидеть карту пациента.</p>
+        </div>
+      </ng-container>
+      <!--<app-client-data *ngIf="load==='client-data'"></app-client-data>-->
+    </div>
+    <div class="clearfix">
+    </div>
+
+  </div>
+</div>

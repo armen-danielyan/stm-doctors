@@ -1,0 +1,130 @@
+<div class="content-lg gray">
+  <div class="inner-content">
+  <p class="patient-call-info"><span class="color-mid-gray">Пациент:</span> {{NamePatient}} <!--(&lt;!&ndash;{{hoursDisplay ? hoursDisplay : '00'}} :&ndash;&gt;
+    {{(minutesDisplay) && (minutesDisplay <= 59) ? minutesDisplay : '00'}} : {{(secondsDisplay) && (secondsDisplay <= 59) ? secondsDisplay : '00'}})-->
+    ({{minutesLabel}}:{{secondsLabel}})
+  </p>
+    <div class="addmission-video-call-wrapper">
+      <div class="addmission-video-call">
+        <div class="video-block-container" [ngClass]="{'fuulScreen': isFullScreen}">
+          <div class="" id="remoteContainer">
+            <video id="remoteVideo" style="width: 100%;height: 100%"  autoplay playsinline></video>
+          </div>
+          <div>
+              <video class="interlocutor-video" id="myVideo" autoplay playsinline muted></video>
+          </div>
+          <!-- for dev -->
+          <div class="row myblock" style="display:none;">
+            <div class="col-lg-3">
+              <div class="btn-panel btn-panel-conversation">
+                <input type="text" class="col-lg-8" id="UserNameInput" placeholder="Change User Name" />
+              </div>
+            </div>
+            <div class="col-lg-offset-1 col-lg-7">
+              <div class="btn-panel btn-panel-msg">
+                <input type="text" class="col-lg-3 pull-right" id="RoomNameInput" placeholder="Change Room" />
+              </div>
+            </div>
+          </div>
+          <div id="UserList" class="conversation-wrap col-lg-3" style="display:none;">
+          </div>
+          <!-- for dev -->
+          <div class="actions-block">
+            <div class="video-notification" *ngIf="!microphone">У вас выключен микрофон</div>
+            <div class="video-notification" *ngIf="!camera">У вас выключена камера</div>
+            <a (click)="on_off_microphone()">
+              <img *ngIf="!microphone" src="assets/img/icons/mic-off.svg">
+              <img *ngIf="microphone" src="assets/img/icons/mic-on.svg">
+            </a>
+            <a (click)="on_off_camera()">
+              <img *ngIf="!camera" src="assets/img/icons/cam-off.png">
+              <img *ngIf="!camera" src="assets/img/icons/cam-line.svg" class="disabled-line">
+              <img *ngIf="camera" src="assets/img/icons/camera-on.svg">
+
+
+            </a>
+            <a  (click)="fullScreen()"><img src="assets/img/icons/full-screen.svg"></a>
+          </div>
+        </div>
+        <div class="video-chat-container">
+          <div class="video-chat-head mg-bt-40">
+            <div class="video-chat-nav">
+              <a (click)="onNavigate('chat')" [ngClass]="{'active': load === 'chat'}">Протокол приёма</a>
+              <a (click)="onNavigate('card')" [ngClass]="{'active': load === 'card'}">Анкета пациента</a>
+            </div>
+            <div class="color-mid-gray f-16">Идёт приём пациента</div>
+          </div>
+            <app-client-chat [loader]="load"></app-client-chat>
+             <!--<app-card *ngIf="load === 'card'"></app-card>-->
+
+        </div>
+        <div class="clearfix"></div>
+      </div>
+
+    </div>
+
+    <div class="enable-call enable-addmission-video-call">
+      <div class="call-btn end-call end mg-bt-20">
+        <a id="overCall" data-toggle="modal" data-target="#endCall">
+          Окончить приём
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  End Call Modal -->
+<div class="modal fade" id="endCall" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <h4 class="modal-title color-red mg-bt-20">Окончание протокола приёма</h4>
+        <p class="color-title-gray mg-bt-40">
+          Вы уверены, что хотите завершить сеанс приёма с пациентом <b>{{NamePatient}}</b>?
+          <br><br>
+          <!--<b>Длительность приёма - <span>20:52</span></b>-->
+        </p>
+        <div class="end-call-btns">
+          <button
+            type="button"
+            class="btn btn-red modal-continue btn-round"
+            data-dismiss="modal"
+            (click)="endCall()">Да, завершить
+          </button>
+          <button
+            type="button"
+            class="btn btn-green modal-continue btn-round"
+            data-dismiss="modal">Нет, продолжить
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="openPhoto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">
+          <i class="fa fa-times" aria-hidden="true"></i></button>
+        <span class="scroll-info">Скролл +/-</span>
+        <img [imageZoom]="zoomedImageSrc"  style="width: 100%" src="" alt="">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="openPhoto2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">
+          <i class="fa fa-times" aria-hidden="true"></i></button>
+        <span class="scroll-info">Скролл +/-</span>
+        <img [imageZoom]="zoomedImageSrc"  style="width: 100%" src="" alt="">
+      </div>
+    </div>
+  </div>
+</div>

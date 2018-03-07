@@ -1,0 +1,73 @@
+.btn-danger{
+  width: 22px;
+  position: relative;
+  right: 10px;
+  bottom: 60px;
+}
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+.mg-bt-40{
+  line-height: 40px;
+}
+
+.profile-pic-container .choose-profile-pic-container {
+  height: 100%;
+  width: 100%;
+  background-color: #fafafa;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: cover;
+  position: relative;
+  border: solid 1px #e0e0e0;
+  border-radius: 50%;
+  overflow: hidden;
+  input{
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: 9999;
+    bottom: 0;
+    left: 0;
+  }
+}
+.profile-pic-container {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: {
+    image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv4FjZKvV2dOY5dBHmwWmEtKmqGvopr9ymtZDMs7-9GJ6-3Jyn);
+    repeat: no-repeat;
+    size: cover;
+    color: #555555;
+  }
+  margin: auto;
+  margin-top: 30px;
+}
+.profile-pic-block choose-profile-pic-block{
+  input{
+    background-color: rgba(45, 45, 36, 0.35);
+    color: white;
+  }
+}
+.delete-profile-pic-block{
+  text-align: center;
+  top: -30px;
+  position: relative;
+  color: white;
+  font-size: 16px;
+}
+h4{
+  text-align: center;
+}
+
+
+.change-profile-pic {
+  top: 75%;
+  padding-top: 6px;
+  background-color: rgba(45,45,36,.35);
+  height: 30%;
+}

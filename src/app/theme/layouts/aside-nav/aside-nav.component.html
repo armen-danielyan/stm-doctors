@@ -1,0 +1,84 @@
+<section id="sidebar">
+  <ul class="menu">
+
+
+    <!--<li class="menu-item parent">-->
+      <!--<a class="parent-link">-->
+						<!--<span><img src="assets/img/icons/patient-appointment.svg">-->
+						<!--Приём пациентов-->
+					<!--</span>-->
+      <!--</a>-->
+      <!--<ul class="submenu">-->
+        <!--<li><a routerLink="/index" class="submenuSidebar" routerLinkActive="sideActive">В ожидании</a></li>-->
+        <!--<li><a  class="submenuSidebar" routerLinkActive="sideActive">Рассматриваются</a></li>-->
+        <!--<li><a  class="submenuSidebar" routerLinkActive="sideActive">Завершенные</a></li>-->
+      <!--</ul>-->
+    <!--</li>-->
+
+
+
+    <!--<li class="menu-item parent">-->
+      <!--<a class="parent-link">-->
+        <!--<img src="assets/img/icons/finance.svg">-->
+        <!--Финансы-->
+      <!--</a>-->
+      <!--<ul class="submenu">-->
+        <!--<li><a routerLink="/history-finance" routerLinkActive="sideActive" class="submenuSidebar">История</a></li>-->
+        <!--<li><a routerLink="/requests-for-withdrawal" routerLinkActive="sideActive" class="submenuSidebar">Заявки на вывод средств</a></li>-->
+        <!--<li><a routerLink="/withdrawal-requests" routerLinkActive="sideActive" class="submenuSidebar">Мои реквизиты</a></li>-->
+      <!--</ul>-->
+    <!--</li>-->
+
+
+    <li class="menu-item parent">
+      <a class="parent-link submenuSidebar" routerLinkActive="sideActive" routerLink="/support" routerLinkActive="sideActive">
+        <img src="assets/img/icons/support.svg">
+        Поддержка
+      </a>
+    </li>
+  </ul>
+  <div class="footer-help left">
+    <a data-toggle="modal"
+       data-target="#myModal"
+    >О сервисе</a>
+    <a routerLink="/support">Помощь</a>
+
+    <a data-toggle="modal"
+      data-target="#myModal2"
+    >Условия</a>
+  </div>
+  <div class="clearfix"></div>
+  <footer class="footer">
+    <div class="footer-inner">© 2017 Все права защищены</div>
+  </footer>
+</section>
+<!-- Modal 1 -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">
+          <a aria-hidden="true">Закрыть</a></button>
+        <h4 class="modal-title" id="myModalLabel">О сервисе</h4>
+      </div>
+      <div class="modal-body"  [innerHtml]="privacy_policy_html">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal 2 -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">
+          <a aria-hidden="true">Закрыть</a></button>
+        <h4 class="modal-title" id="myModalLabel2">Условия</h4>
+
+      </div>
+      <div class="modal-body"  [innerHtml]="service_rules_html">
+      </div>
+    </div>
+  </div>
+</div>
+

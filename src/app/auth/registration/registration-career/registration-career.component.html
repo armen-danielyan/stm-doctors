@@ -1,0 +1,125 @@
+<div class="wrapper">
+  <div class="bg-container pull-left"></div>
+  <!-- Content -->
+  <div class="content pull-right">
+    <div class="inner-content">
+      <div class="back pull-left">
+        <!--<a href=""><img src="assets/img/icons/arrow-green.svg">Назад</a>-->
+      </div>
+      <app-language-switcher></app-language-switcher>
+      <div class="clearfix"></div>
+      <h3 class="content-title">
+        Регистрация
+      </h3>
+      <h4 class="mg-bt-30">Карьера</h4>
+      
+      <form [formGroup]="careerForm" (ngSubmit)="onSubmit()">
+        <div class="form-group-container">
+            <div class="clearfix"></div>
+            <div formArrayName="careers" class="form-group">
+                <div *ngFor="let career of careerForm['controls']['careers']['controls']; let i=index" [formGroupName]="i" style="margin-bottom:30px">
+                    <!-- Repeat -->
+                    <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Название компании *" formControlName="name" required>
+                    </div>
+
+                    <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Должность *" formControlName="position" required>
+                    </div>
+
+                    <div class="form-group">
+                    <input (input)="calculateExperience(career)" type="text" matInput appDatepickerMask [matDatepicker]="pickerStart"
+                     class="form-control" [max]="maxDate" placeholder="Дата начала работы *"
+                        max="2200-04-30" maxlength="10" formControlName="startDate" required>
+                    <mat-datepicker-toggle id="button" matSuffix [for]="pickerStart"></mat-datepicker-toggle>
+                    <mat-datepicker (closed)="calculateExperience(career)" #pickerStart disabled="false"></mat-datepicker>
+                    </div>
+
+                    <div class="form-group">
+                      <input (input)="calculateExperience(career)" type="text" matInput appDatepickerMask [matDatepicker]="pickerEnd"
+                       class="form-control" [min]="minDate" [max]="currentDate" placeholder="Дата окончания работы"
+                          max="2200-04-30" maxlength="10" formControlName="endDate" required>
+                      <mat-datepicker-toggle id="button" matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+                      <mat-datepicker (closed)="calculateExperience(career)" #pickerEnd disabled="false"></mat-datepicker>
+                    </div>
+
+                    <div class="form-group">
+                    <input type="text" 
+                    class="form-control" 
+                    placeholder="Страна *" 
+                    formControlName="country" 
+                    required  
+                    (input)="searchCountries(career)">
+                    <div *ngIf="career.get('displayCountries').value">
+                        <div class="gotCities">
+                          <ul>
+                            <li *ngFor="let country of listOfCountries" (click)="selectCountry(country, career)">{{country.name}}</li>
+                          </ul>
+                        </div>
+                    </div>
+                    </div>
+
+
+                    <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Город *" formControlName="city" required  (input)="searchCities(career)">
+                    <div *ngIf="career.get('displayCities').value">
+                        <div class="gotCities">
+                          <ul >
+                            <li *ngFor="let city of listOfCities" (click)="selectCity(city, career)">{{city.name}}</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group" >
+                      <label for="experience">Стаж</label>
+                      <input
+                        type="text"
+                        class="form-control experience"
+                        id="experience"
+                        formControlName="experience"
+                        readonly>
+                    </div>
+        
+                    <div class="form-group">
+                    <textarea
+                      class="form-control advisor-info"
+                      rows="5"
+                      id="comment"
+                      placeholder="ФИО рекомендателя и его контакты *"
+                      formControlName="recommender">
+                    </textarea>
+                    </div>
+
+                    <a *ngIf="careers.length > 1" (click)="deletecareer(i)">
+                        Удалить место работы
+                        <img src="../../../../assets/img/icons/delete.svg" alt="">
+                    </a>
+                    <!-- End Repeat -->
+                </div>
+            </div>
+        </div>
+    </form>
+    <button
+    (click)="addCareer()"
+    type="button"
+    class="btn btn-blue">
+    Добавить еще место работы
+    </button>
+
+      <div class="bottom">
+        <hr>
+        <button
+          (click)="onSubmit()"
+          [disabled]="careerForm.invalid"
+          type="button" class="btn btn-green ">Продолжить
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+</div>
+<!--<footer class="footer">-->
+  <!--<div class="footer-inner">Doctor Smart ©2017</div>-->
+<!--</footer>-->
+<app-footer></app-footer>

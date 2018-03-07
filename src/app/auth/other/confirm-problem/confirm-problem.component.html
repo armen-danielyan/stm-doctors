@@ -1,0 +1,43 @@
+<div class="wrapper">
+  <div class="bg-container pull-left"></div>
+  <!-- Content -->
+  <div class="content pull-right">
+    <div class="inner-content">
+      <div class="back pull-left">
+        <a href=""><img src="assets/img/icons/arrow-green.svg">Назад</a>
+      </div>
+      <app-language-switcher></app-language-switcher>
+      <div class="clearfix"></div>
+      <div class="enter-problem-confirm-block">
+        <h3 class="content-title">
+          Обращение сформировано
+        </h3>
+        <p class="mg-bt-30 f-16">
+          Спасибо за ваше обращение, наши
+          специалисты уже разбираются, вы получите
+          ответ в ближайшее время.
+          <br><br>
+          Команда Doctor Smart.
+        </p>
+        <button
+          type="button"
+          class="btn btn-green"
+          (click)="redirectToLogin()"
+        >Принять
+        </button>
+      </div>
+    </div>
+
+
+  </div>
+  <!--<div class="footer-help">-->
+    <!--<a href="">О сервисе</a>-->
+    <!--<a href="">Помощь</a>-->
+    <!--<a href="">Условия</a>-->
+  <!--</div>-->
+  <!--<div class="clearfix"></div>-->
+</div>
+<!--<footer class="footer">-->
+  <!--<div class="footer-inner">Doctor Smart ©2017</div>-->
+<!--</footer>-->
+<app-footer></app-footer>

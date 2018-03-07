@@ -1,0 +1,66 @@
+<div class="content-lg">
+  <div class="inner-content">
+    <h3 class="content-title">Техническая поддержка</h3>
+    <form class="tech-support-lg">
+      <h3 class="normal mg-bt-30">Форма обратной связи</h3>
+      <div class="form-group-container">
+        <div class="form-group">
+          <label>Ваше имя</label>
+          <input type="text" class="form-control" placeholder="">
+        </div>
+        <div class="form-group">
+          <label>Контактный e-mail</label>
+          <input type="email" class="form-control" placeholder="">
+        </div>
+        <div class="form-group" (clickOutside)="clickOut()">
+          <label>Тема обращения</label>
+          <div class="select-gray">
+            <div class="form-control select-styled"  (click)="isOpened()" [ngClass]="{'active ': isOpen}">
+              {{default}}
+            </div>
+            <ul class="select-options">
+              <li  *ngFor="let sub of subjects"
+                   (click)="onSelect(sub.name)"
+              >
+                {{sub.name}}</li>
+            </ul>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Опишите вашу проблему</label>
+          <textarea class="form-control" rows="5" id="" placeholder=""></textarea>
+        </div>
+
+      </div>
+      <button type="button" class="btn btn-green mg-bt-40" id="btn"  data-toggle="modal" data-target="#supportModal">Отправить</button>
+    </form>
+    <!--<div class="attention-block">-->
+      <!--<h4 class="mg-top-0">Обратите внимание!</h4>-->
+      <!--<p class="mg-bt-30">На этой странице находятся все ваши реквизиты для выплат. Если вы еще не создали их, то самое время приступить, иначе мы не сможем перечислить вам деньги.</p>-->
+      <!--<button type="button" class="btn btn-blue">Добавить реквизиты</button>-->
+    <!--</div>-->
+    <!-- Modal -->
+  </div>
+</div>
+
+
+<div class="modal fade" id="supportModal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <h4 class="modal-title color-red mg-bt-20">Обращение отправлено</h4>
+        <p class="mg-bt-40">
+          Ваше обращение Потерян Доступ к аккаунту, было
+          направлено нашим специалистам. Скоро вы получите
+          уведомление на контактный email.
+          <br><br>
+          Команда Doctor Smart.
+        </p>
+        <button type="button" class="btn btn-green modal-continue" data-dismiss="modal">Продолжить</button>
+      </div>
+    </div>
+
+  </div>
+</div>

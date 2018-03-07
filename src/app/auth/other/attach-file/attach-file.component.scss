@@ -1,0 +1,35 @@
+.imageCursor {
+  cursor: pointer;
+}
+.pic-file {
+  width: 70px;
+  height: 70px;
+  border-radius: 10px;
+  position: relative;
+  background-size: cover;
+  background-position: center center;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+.search-icon{
+  margin-top: 20px;
+}
+
+  .modal-content{
+    box-shadow: none;
+    background-color: transparent;
+    border: none;
+    .close{
+      position: relative;
+      right: -30px;
+      opacity: 1;
+    }
+    i{
+      color: #fff;
+    }
+  }
+  h4{
+    span{
+      color: red;
+    }
+  }

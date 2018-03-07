@@ -1,0 +1,153 @@
+<div class="wrapper">
+  <div class="bg-container pull-left"></div>
+  <!-- Content -->
+  <div class="content pull-right">
+    <div class="inner-content">
+      <!--<div class="back pull-left">
+        <a [routerLink]="['./registration-step-2']"><img src="assets/img/icons/arrow-green.svg">Назад</a>
+      </div>-->
+   <app-language-switcher></app-language-switcher>
+      <div class="clearfix"></div>
+        <h4 class="agreement-title mg-bt-30">Пользовательские соглашения</h4>
+        <div class="agreement-block mg-bt-30">Пожалуйста внимательно ознакомьтесь с
+          правилами использования нашей системы и
+          политикой обработки личных данных.
+        </div>
+      <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+
+        <div class="checkbox-info mg-bt-15">
+          <input
+            type="checkbox"
+            ngModel
+            required
+            name="service_rules">
+          <label>
+            Соглашаюсь с
+            <a
+              type="button"
+              data-toggle="modal"
+              data-target="#myModal3">правилами</a>
+            пользования сервисом
+            <a type="button">Dr. Smart</a>
+          </label>
+        </div>
+        <div class="checkbox-info mg-bt-15">
+          <input
+            type="checkbox"
+            ngModel
+            required
+            name="privacy_policy">
+          <label>
+            Соглашаюсь с
+            <a type="button"
+               data-toggle="modal"
+               data-target="#myModal4">политикой конфеденциальности сервиса</a>
+          </label>
+        </div>
+        <div class="checkbox-info mg-bt-15">
+          <input
+            type="checkbox"
+            ngModel
+            required
+            name="dr_smart_isnt_health_facility">
+          <label>
+            Понимаю, что Dr. Smart не заменяет визит в медучреждение
+          </label>
+        </div>
+        <div class="checkbox-info mg-bt-15">
+          <input
+            type="checkbox"
+            ngModel
+            required
+            name="personal_data">
+          <label>
+            Соглашаюсь на хранение моих личных данных
+          </label>
+        </div>
+        <hr>
+        <button
+          type="submit"
+          class="btn"
+          [ngClass]=" f.valid ? 'btn-green': 'btn-gray'"
+          [disabled]="f.invalid">Продолжить</button>
+
+      </form>
+
+    </div>
+
+
+  </div>
+  <!--<div class="footer-help">-->
+    <!--<a data-toggle="modal"-->
+       <!--data-target="#myModal3">О сервисе</a>-->
+    <!--<a (click)="help()">Помощь</a>-->
+    <!--<a data-toggle="modal"-->
+       <!--data-target="#myModal4">Условия</a>-->
+  <!--</div>-->
+  <!--<div class="clearfix"></div>-->
+</div>
+<!--<footer class="footer">-->
+  <!--<div class="footer-inner">Doctor Smart ©2017</div>-->
+<!--</footer>-->
+
+
+<!-- Modal 1 -->
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">
+          <a aria-hidden="true">Закрыть</a></button>
+        <h4 class="modal-title" id="myModalLabel">Правила использования</h4>
+      </div>
+      <div class="modal-body"  [innerHtml]="privacy_policy_html">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal 2 -->
+<div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">
+          <a aria-hidden="true">Закрыть</a></button>
+        <h4 class="modal-title" id="myModalLabel2">Политика конфеденциальности</h4>
+
+      </div>
+      <div class="modal-body"  [innerHtml]="service_rules_html">
+      </div>
+    </div>
+  </div>
+</div>
+<!--&lt;!&ndash; Modal 3 &ndash;&gt;-->
+<!--<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3">-->
+  <!--<div class="modal-dialog" role="document">-->
+    <!--<div class="modal-content">-->
+      <!--<div class="modal-header">-->
+        <!--<button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">-->
+          <!--<a aria-hidden="true">Закрыть</a></button>-->
+        <!--<h4 class="modal-title" id="myModalLabel3">О сервисе</h4>-->
+      <!--</div>-->
+      <!--<div class="modal-body"  [innerHtml]="privacy_policy_html">-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
+<!--&lt;!&ndash; Modal 4 &ndash;&gt;-->
+<!--<div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel4">-->
+  <!--<div class="modal-dialog" role="document">-->
+    <!--<div class="modal-content">-->
+      <!--<div class="modal-header">-->
+        <!--<button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">-->
+          <!--<a aria-hidden="true">Закрыть</a></button>-->
+        <!--<h4 class="modal-title" id="myModalLabel4">Условия</h4>-->
+
+      <!--</div>-->
+      <!--<div class="modal-body"  [innerHtml]="service_rules_html">-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
+
+<app-footer></app-footer>

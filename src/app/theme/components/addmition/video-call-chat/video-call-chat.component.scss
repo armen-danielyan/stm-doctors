@@ -1,0 +1,97 @@
+video{
+  left: 0;
+}
+.interlocutor-video{
+  height: unset;
+  z-index: 10;
+  width: 130px;
+  margin: 15px;
+  border-radius: 14px;
+  background-color: #ffffff;
+}
+.video-block-container{
+  pointer-events: none;
+  cursor: default;
+  .actions-block{
+    pointer-events: all;
+    cursor: default;
+  }
+}
+
+.uploadFileInput {
+  width: 22px;
+  height: 19px;
+  opacity: 0;
+  margin-top: -20px;
+  overflow: hidden;
+  position: absolute;
+  z-index: 9999;
+  background-color: red
+}
+.fuulScreen{
+  position: absolute;
+  width: 100%;
+  height: 90%;
+  z-index: 99;
+}
+.video-chat-container{
+  min-width: 860px;
+  .bordered{
+    padding: 0px;
+  }
+}
+
+.force-overflow{
+  height: calc(100vh - 500px)!important;
+}
+.interlocutor-video{
+  background-color: transparent;
+}
+//.modal-body{
+//  background-repeat: no-repeat;
+//  -webkit-background-size:contain ;
+//  background-size: contain;
+//  background-position: 50%;
+//  width: 100%;
+//  height: 500px;
+//}
+#openPhoto, #openPhoto2{
+  .modal-content{
+    box-shadow: none;
+    background-color: transparent;
+    border: none;
+    .close{
+      position: relative;
+      right: -30px;
+      opacity: 1;
+    }
+    i{
+      color: #fff;
+    }
+  }
+  .scroll-info{
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #fff;
+    opacity: 1;
+  }
+}
+.pic-file{
+  font-size: 0;
+}
+
+@media (min-width: 768px){
+  #openPhoto, #openPhoto2{
+    .modal-content{
+      width: 800px;
+    }
+    .modal-dialog{
+      width: 800px;
+    }
+  }
+}
+
+
+
+

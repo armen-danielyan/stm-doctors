@@ -1,0 +1,12 @@
+.account-header-dropdown{
+  opacity: 1;
+  display: none;
+  &.open {
+    opacity: 1;
+    display: block;
+    z-index: 22;
+  }
+}
+.dropdown-btn{
+  padding: 5px;
+}

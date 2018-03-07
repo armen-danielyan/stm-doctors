@@ -1,0 +1,381 @@
+<div class="content-lg">
+  <div class="inner-content bordered bg-white">
+    <!-- Your Account Section -->
+    <div class="you-account-block">
+      <h4 class="f-20"> Ваш профиль </h4>
+      <!--<div class="pic-container"></div>-->
+      <div class="profile-pic-container">
+        <div class="choose-profile-pic-container" [ngStyle]="{'background-image': 'url(' + url + ')'}">
+          <div *ngIf="dow" class="profile-pic-block choose-profile-pic-block">
+            <input
+              type="file"
+              (change)="readUrl($event)"
+              accept=".jpg, .png, .jpeg">
+          </div>
+          <div class="profile-pic-block delete-profile-pic-block change-profile-pic"
+            *ngIf="del" (click)="deletePhoto()">
+       Удалить
+     </div>
+     <div class="profile-pic-block delete-profile-pic-block change-profile-pic"
+      *ngIf="edit"
+      (change)="readUrl($event)">
+       Изменить
+     </div>
+        </div>
+ 
+      </div>
+      <div class="your-account-name text-center mg-bt-20">
+        <h4 class="">{{doctorData.first_name}} {{doctorData.last_name}}</h4>
+        <!--<p class="f-16">Консультант</p>-->
+      </div>
+
+      <!--<a routerLink="/history-finance"
+        type="button"
+        class="btn btn-blue mg-bt-40"
+      >Подробнее</a>-->
+      <div class="your-account-phone">
+        <div class="mg-bt-30">
+          <p class="f-14 color-mid-gray">Ваш телефон:</p>
+          <p
+            class="f-18 color-title-gray"
+          >{{userNumber}}</p>
+        </div>
+        <button
+          type="button"
+          class="btn btn-blue mg-bt-40"
+          (click)="redirectChangeNumber()"
+        >Изменить телефон</button>
+        <button
+          type="button"
+          class="btn btn-blue mg-bt-40"
+          (click)="redirectChangePassword()"
+        >Изменить пароль</button>
+      </div>
+    </div>
+
+    <!-- Personal Details Section -->
+    <div class="personal-details-block">
+      <div class="force-overflow" id="scrollbox">
+        <!--<form #f="ngForm" (ngSubmit)="onSubmit(f)">-->
+          <!--<h4 class="f-20">Личная информация</h4>-->
+          <!--<div-->
+            <!--class="user-info-block"-->
+            <!--ngModelGroup="doctorInfo"-->
+            <!--#doctorInfo="ngModelGroup"-->
+          <!--&gt;-->
+            <!--<hr>-->
+            <!--<div class="user-info doc row">-->
+              <!--<div class="col_md_4">-->
+                <!--<div class="form-group-container">-->
+                  <!--<label>Фамилия, Имя и Отчество</label>-->
+                  <!--<div class="form-group">-->
+                    <!--<input-->
+                      <!--ngModel-->
+                      <!--name="last_name"-->
+                      <!--type="text"-->
+                      <!--class="form-control"-->
+                      <!--id="lname"-->
+                      <!--placeholder="Фамилия"-->
+                      <!--required-->
+                      <!--#lname="ngModel"-->
+                      <!--minlength="2"-->
+                      <!--[(ngModel)]="user.last_name"-->
+                    <!--&gt;-->
+                    <!--&lt;!&ndash;<span class="help-block errorInputColor"&ndash;&gt;-->
+                          <!--&lt;!&ndash;*ngIf="lname.invalid && lname.touched ">Обязательное поле!</span>&ndash;&gt;-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</div>-->
+              <!--<div class="col_md_4">-->
+                <!--<div class="form-group-container">-->
+                  <!--<div class="form-group">-->
+                    <!--<input-->
+                      <!--ngModel-->
+                      <!--name="first_name"-->
+                      <!--type="text"-->
+                      <!--class="form-control"-->
+                      <!--id="fname"-->
+                      <!--required-->
+                      <!--placeholder="Имя"-->
+                      <!--#fname="ngModel"-->
+                      <!--[(ngModel)]="user.first_name"-->
+                    <!--&gt;-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</div>-->
+              <!--<div class="col_md_4">-->
+                <!--<div class="form-group-container">-->
+                  <!--<div class="form-group">-->
+                    <!--<input-->
+                      <!--ngModel-->
+                      <!--name="mid_name"-->
+                      <!--type="text"-->
+                      <!--class="form-control"-->
+                      <!--id="mname"-->
+                      <!--required-->
+                      <!--#mname="ngModel"-->
+                      <!--placeholder="Отчество"-->
+                      <!--[(ngModel)]="user.mid_name"-->
+                    <!--&gt;-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div class="user-info doc row">-->
+              <!--<div class="col_md_4">-->
+                <!--<div class="form-group-container">-->
+                  <!--<label>Дата рождения</label>-->
+                  <!--<div class="form-group">-->
+                    <!--<input-->
+                      <!--ngModel-->
+                      <!--name="birth_date"-->
+                      <!--type="text"-->
+                      <!--class="form-control"-->
+                      <!--id="bday"-->
+                      <!--required-->
+                      <!--placeholder="Дата рождения"-->
+                      <!--[(ngModel)]="user.birth_date"-->
+                      <!--[textMask]="{mask: mask_brth,  guide: false, modelClean: true}"-->
+                      <!--#bDay="ngModel"-->
+                    <!--&gt;-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</div>-->
+              <!--<div class="col_md_4">-->
+                <!--<div class="form-group-container">-->
+                  <!--<label>Страна и город</label>-->
+                  <!--<div class="form-group">-->
+                    <!--<input-->
+                      <!--ngModel-->
+                      <!--name="leave_city"-->
+                      <!--[(ngModel)]="user.leave_city"-->
+                      <!--type="text"-->
+                      <!--class="form-control"-->
+                      <!--id="lcity"-->
+                      <!--required-->
+                      <!--placeholder="Страна и город"-->
+                      <!--#lCity="ngModel"-->
+                    <!--&gt;-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+
+          <!--<div class="user-info-block">-->
+            <!--<hr>-->
+            <!--<h4 class="f-20">Карьера</h4>-->
+            <!--<button-->
+              <!--type="button"-->
+              <!--class="btn btn-blue"-->
+              <!--(click)="newCareerPart()"-->
+            <!--&gt;Добавить новое место</button>-->
+            <!--<div-->
+              <!--ngModelGroup="doctorCareer"-->
+              <!--#doctorCaree="ngModelGroup"-->
+            <!--&gt;-->
+              <!--<ng-container *ngFor="let arr of careerPart; let i = index"-->
+              <!--&gt;-->
+                <!--<hr>-->
+                <!--<div-->
+                  <!--[ngModelGroup]="'doctorCareerPart' + i"-->
+                  <!--#doctorCareerPart="ngModelGroup"-->
+                <!--&gt;-->
+                  <!--<div class="user-info doc row">-->
+                    <!--<div class="col_md_4">-->
+                      <!--<div class="form-group-container">-->
+                        <!--<label>Название компании</label>-->
+                        <!--<div class="form-group">-->
+                          <!--<input-->
+                            <!--type="text"-->
+                            <!--class="form-control"-->
+                            <!--ngModel-->
+                            <!--name="company_name"-->
+                          <!--&gt;-->
+                        <!--</div>-->
+                      <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="col_md_4">-->
+                      <!--<div class="form-group-container">-->
+                        <!--<label>Должность</label>-->
+                        <!--<div class="form-group">-->
+                          <!--<input-->
+                            <!--type="text"-->
+                            <!--class="form-control"-->
+                            <!--ngModel-->
+                            <!--name="doctor_position"-->
+                          <!--&gt;-->
+                        <!--</div>-->
+                      <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="col_md_4">-->
+                      <!--<div class="form-group-container">-->
+                        <!--<label>Страна и город</label>-->
+                        <!--<div class="form-group">-->
+                          <!--<input-->
+                            <!--type="text"-->
+                            <!--class="form-control"-->
+                            <!--ngModel-->
+                            <!--name="work_country_city"-->
+                            <!--id="lastname"-->
+                          <!--&gt;-->
+                        <!--</div>-->
+                      <!--</div>-->
+                      <!--<a-->
+                        <!--(click)="removeCar(i)"-->
+                        <!--class=" btn-danger">X</a>-->
+                    <!--</div>-->
+                  <!--</div>-->
+                  <!--<div class="user-info doc row">-->
+                    <!--<div class="col_md_4">-->
+                      <!--<div class="form-group-container">-->
+                        <!--<label>Дата начала работы</label>-->
+                        <!--<div class="form-group">-->
+                          <!--<input-->
+                            <!--type="text"-->
+                            <!--class="form-control"-->
+                            <!--ngModel-->
+                            <!--name="position_start_date"-->
+                            <!--id="startDay"-->
+                          <!--&gt;-->
+                        <!--</div>-->
+                      <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="col_md_4">-->
+                      <!--<div class="form-group-container">-->
+                        <!--<label>Общий стаж</label>-->
+                        <!--<div class="form-group">-->
+
+                          <!--<input-->
+                            <!--type="text"-->
+                            <!--class="form-control"-->
+                            <!--ngModel-->
+                            <!--name="total_work_length"-->
+                            <!--id="workLength"-->
+                          <!--&gt;-->
+                        <!--</div>-->
+                      <!--</div>-->
+                    <!--</div>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</ng-container>-->
+            <!--</div>-->
+          <!--</div>-->
+
+          <!--<div class="user-info-block">-->
+            <!--<hr>-->
+            <!--<h4 class="f-20">Информация об образовании</h4>-->
+            <!--<button-->
+              <!--type="button"-->
+              <!--class="btn btn-blue"-->
+              <!--(click)="newEducationPart()"-->
+            <!--&gt;Добавить новое место</button>-->
+            <!--<div-->
+              <!--ngModelGroup="doctorEducation"-->
+              <!--#doctorEducation="ngModelGroup"-->
+            <!--&gt;-->
+              <!--<ng-container  *ngFor="let arr of educationPart; let i = index"-->
+              <!--&gt;-->
+                <!--<hr>-->
+                <!--<div-->
+                  <!--[ngModelGroup]="'doctorEducationPart' + i"-->
+                  <!--#doctorEducationPart="ngModelGroup"-->
+                <!--&gt;-->
+                  <!--<div class="user-info doc row">-->
+                    <!--<div class="col_md_4">-->
+                      <!--<div class="form-group-container">-->
+                        <!--<label>Название компании</label>-->
+                        <!--<div class="form-group">-->
+                          <!--<input-->
+                            <!--type="text"-->
+                            <!--class="form-control"-->
+                            <!--ngModel-->
+                            <!--name="company_name"-->
+                          <!--&gt;-->
+                        <!--</div>-->
+                      <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="col_md_4">-->
+                      <!--<div class="form-group-container">-->
+                        <!--<label>Должность</label>-->
+                        <!--<div class="form-group">-->
+                          <!--<input-->
+                            <!--type="text"-->
+                            <!--class="form-control"-->
+                            <!--ngModel-->
+                            <!--name="doctor_position"-->
+                          <!--&gt;-->
+                        <!--</div>-->
+                      <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="col_md_4">-->
+                      <!--<div class="form-group-container">-->
+                        <!--<label>Страна и город</label>-->
+                        <!--<div class="form-group">-->
+                          <!--<input-->
+                            <!--type="text"-->
+                            <!--class="form-control"-->
+                            <!--ngModel-->
+                            <!--name="work_country_city"-->
+                            <!--id="lastname"-->
+                          <!--&gt;-->
+                        <!--</div>-->
+                        <!--<a-->
+                          <!--(click)="removeEdu(i)"-->
+                          <!--class=" btn-danger">X</a>-->
+                      <!--</div>-->
+                    <!--</div>-->
+                  <!--</div>-->
+                  <!--<div class="user-info doc row">-->
+                    <!--<div class="col_md_4">-->
+                      <!--<div class="form-group-container">-->
+                        <!--<label>Дата начала работы</label>-->
+                        <!--<div class="form-group">-->
+                          <!--<input-->
+                            <!--type="text"-->
+                            <!--class="form-control"-->
+                            <!--ngModel-->
+                            <!--name="position_start_date"-->
+                            <!--id="startDay"-->
+                          <!--&gt;-->
+                        <!--</div>-->
+                      <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="col_md_4">-->
+                      <!--<div class="form-group-container">-->
+                        <!--<label>Общий стаж</label>-->
+                        <!--<div class="form-group">-->
+
+                          <!--<input-->
+                            <!--type="text"-->
+                            <!--class="form-control"-->
+                            <!--ngModel-->
+                            <!--name="total_work_length"-->
+                            <!--id="workLength"-->
+                          <!--&gt;-->
+                        <!--</div>-->
+                      <!--</div>-->
+                    <!--</div>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</ng-container>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="double-hr"></div>-->
+          <!--<div class="flex-row-center">-->
+            <!--<div class="col_md_4">-->
+              <!--<button-->
+                <!--type="submit"-->
+                <!--class="btn btn-green mg-bt-10"-->
+              <!--&gt;Сохранить изменения</button>-->
+            <!--</div>-->
+          <!--</div>-->
+
+        <!--</form>-->
+
+      </div>
+
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</div>

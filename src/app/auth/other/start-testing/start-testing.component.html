@@ -1,0 +1,49 @@
+<div class="wrapper">
+  <div class="bg-container small pull-left"></div>
+  <!-- Content -->
+  <div class="content full pull-right">
+    <div class="inner-content">
+      <div class="back pull-left">
+        <a (click)="redirectStep4()">
+          <img src="assets/img/icons/arrow-green.svg">Назад</a>
+      </div>
+      <app-language-switcher></app-language-switcher>
+      <div class="clearfix"></div>
+      <h3 class="text-center">
+        Коллега, остался последний шаг регистрации!
+      </h3>
+      <p class="star-test-note">Прохождение <b>обязательного теста на профпригодность.</b> Тест состоит из <b>45
+        вопросов</b> и займёт у вас <b>60 минут</b>, для него потребуется ручка и бумага. Некоторые вопросы отдельно
+        ограничены по времени - будьте внимательны. Отложите всё и устройтесь поудобнее перед началом тестирования.</p>
+      <div class="user-info row">
+      </div>
+      <div class="flex-row-center user-info-continue">
+        <div class="col_md_4">
+          <hr>
+          <button
+            type="button"
+            class="btn btn-green"
+            (click)="redirectTestProcess()"
+          >Начать тестирование
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <div class="clearfix"></div>
+  <div class="footer-help-full full pull-right flex-row-center">
+    <div class="col_md_4">
+      <div class="footer-help">
+        <a href="">О сервисе</a>
+        <a href="">Помощь</a>
+        <a href="">Условия</a>
+      </div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+</div>
+<footer class="footer full">
+  <div class="footer-inner">Doctor Smart ©2017</div>
+</footer>

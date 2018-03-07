@@ -1,0 +1,54 @@
+<header class="header">
+  <div class="logo-container" (click)="redirectToIndex()">
+    <img src="../../assets/img/icons/logo.png">
+  </div>
+  <div class="header-content-part">
+    <app-language-switcher></app-language-switcher>
+    <div class="right-part pull-right">
+      <div class="call-in-process" style="display:none">
+        Идёт приём пациента
+      </div>
+      <!--<div class="header-notifications">
+        <div class="item">
+          <a href="">
+            <img src="assets/img/icons/message.svg"><div class="event"></div>
+          </a>
+        </div>
+        <div class="item">
+          <a href=""><img src="assets/img/icons/notification.svg">
+            <div class="event"></div>
+          </a>
+        </div>
+      </div>-->
+
+      <div class="account-header">
+        <div class="name">
+          <p>{{doctorData.first_name}} {{doctorData.last_name}}</p>
+          <!--<p>консультант</p>-->
+        </div>
+
+        <a class="dropdown-btn">
+          <div class="pic-container"
+            [ngStyle]="{'background-image': 'url(' + pathimg + ')' }"
+          >
+          </div>
+          <a class="dropdown-btn">
+            <img src="assets/img/icons/arrow-down-gray.svg" class="dropdown-btn dropdown-btn-gray">
+            <img src="assets/img/icons/arrow-down-green.svg" class="dropdown-btn dropdown-btn-green">
+          </a>
+        </a>
+
+        <div class="account-header-dropdown">
+          <p><a routerLink="/personal-data">Личные данные</a></p>
+          <hr>
+          <p><a (click)="logoutUser()">Выйти</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+  <div class="clearfix"></div>
+</header>
+
+
+

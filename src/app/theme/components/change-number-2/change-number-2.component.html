@@ -1,0 +1,161 @@
+
+<div class="content-lg gray">
+  <div class="inner-content">
+    <h3 class="content-title color-mid-gray">Мои реквизиты</h3>
+    <div class="back">
+      <a a routerLink="/personal-data" ><img src="assets/img/icons/arrow-green.svg">Вернуться назад</a>
+    </div>
+    <div class="card-container">
+      <div class="mg-bt-30"><span class="f-24">Сменить телефон / </span><a a routerLink="/change-password"  class="color-green-teal">Сменить пароль</a></div>
+      <div class="card mg-bt-40">
+          <div class="form-group-container">
+            <div class="form-group">
+              <label class="f-14">Старый номер телефона</label>
+              <input
+                type="tel"
+                class="form-control"
+                id="tel-old"
+                placeholder="{{oldnumber}}"
+                readonly>
+            </div>
+            <div class="form-group">
+              <label class="f-14">Новый номер телефона</label>
+              <input
+                type="tel"
+                class="form-control"
+                id="tel-new"
+                placeholder="Новый номер телефона"
+                [(ngModel)]="newphone"
+                #phone_number="ngModel"
+                required
+                [readonly]="shownewphone"
+                [textMask]="{mask: mask,  guide: false, modelClean: true}"
+              >
+              <a (click)="show()" class="change-link" *ngIf="verifayCode">Изменить</a>
+            </div>
+            <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              id="tel"
+              placeholder="Код из SMS"
+              [(ngModel)]="code"
+              *ngIf="verifayCode">
+          </div>
+            <div class="clearfix"></div>
+          </div>
+      </div>
+      <p
+        *ngIf="count_resend"
+        class="code-time">
+        Вы сможете запросить
+        <br>
+        повторный код через: {{countDown | async}} сек.</p>
+      <a
+        *ngIf="!count_resend && start_timer"
+        class="double-code color-green-teal"
+        (click)="resendCode()">Выслать повторный код</a>
+
+      <button
+        type="button"
+        class="btn btn-login btn-sky-blue"
+        [disabled]='phone_number.invalid'
+        (click)="changePhone()"
+        *ngIf="phoneverfikeshn">
+        Выслать SMS-код
+      </button>
+
+      <button
+        type="button"
+        class="btn btn-sky-blue"
+        (click)="VerificationCode()"
+        *ngIf="verifayCode">
+        Продолжить
+      </button>
+    </div>
+  </div>
+</div>
+
+
+
+<!--<div class="wrapper">-->
+  <!--<div class="bg-container pull-left"></div>-->
+  <!--&lt;!&ndash; Content &ndash;&gt;-->
+  <!--<div class="content pull-right">-->
+    <!--<div class="inner-content">-->
+      <!--<div class="back pull-left">-->
+        <!--<a routerLink="/personal-data" ><img src="assets/img/icons/arrow-green.svg">Назад</a>-->
+      <!--</div>-->
+     <!--<app-language-switcher></app-language-switcher>-->
+      <!--<div class="clearfix"></div>-->
+      <!--<h3 class="content-title">-->
+        <!--Смена номера телефона-->
+      <!--</h3>-->
+      <!--<div class="form-group-container">-->
+        <!--<div class="form-group">-->
+          <!--<label for="tel-old">Старый номер телефона</label>-->
+          <!--<input-->
+            <!--type="tel"-->
+            <!--class="form-control"-->
+            <!--id="tel-old"-->
+            <!--placeholder="{{oldnumber}}"-->
+            <!--readonly>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+          <!--<input-->
+            <!--type="tel"-->
+            <!--class="form-control"-->
+            <!--id="tel-new"-->
+            <!--placeholder="Новый номер телефона"-->
+            <!--[(ngModel)]="newphone"-->
+            <!--[readonly]="shownewphone"-->
+            <!--[textMask]="{mask: mask,  guide: false, modelClean: true}"-->
+          <!--&gt;-->
+          <!--<a (click)="show()" class="change-link" *ngIf="verifayCode">Изменить</a>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+          <!--<input-->
+            <!--type="text"-->
+            <!--class="form-control"-->
+            <!--id="tel"-->
+            <!--placeholder="Код из SMS"-->
+            <!--[(ngModel)]="code"-->
+            <!--*ngIf="verifayCode">-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--<p-->
+        <!--*ngIf="count_resend"-->
+        <!--class="code-time">-->
+        <!--Вы сможете запросить-->
+        <!--<br>-->
+        <!--повторный код через: {{countDown | async}} сек.</p>-->
+      <!--<a-->
+        <!--*ngIf="!count_resend"-->
+        <!--class="double-code color-green-teal"-->
+        <!--(click)="resendCode()">Выслать повторный код</a>-->
+
+      <!--<button-->
+        <!--type="button"-->
+        <!--class="btn btn-login btn-green"-->
+        <!--(click)="changePhone()"-->
+        <!--*ngIf="phoneverfikeshn">-->
+        <!--Отправить код-->
+      <!--</button>-->
+
+      <!--<button-->
+        <!--type="button"-->
+        <!--class="btn btn-login btn-green"-->
+        <!--(click)="VerificationCode()"-->
+        <!--*ngIf="verifayCode">-->
+        <!--Продолжить-->
+      <!--</button>-->
+      <!--&lt;!&ndash;<p class="code-time">Вы сможете запросить <br> повторный код через: 57 сек.</p>&ndash;&gt;-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--<div class="footer-help">-->
+    <!--<a href="">О сервисе</a>-->
+    <!--<a href="">Помощь</a>-->
+    <!--<a href="">Условия</a>-->
+  <!--</div>-->
+  <!--<div class="clearfix"></div>-->

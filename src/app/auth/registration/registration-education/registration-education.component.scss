@@ -1,0 +1,68 @@
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+.errorInputColor {
+  color: red;
+}
+form{
+  margin-bottom: 30px;
+}
+.bottom{
+  position: relative;
+}
+.gotCities{
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-top: none;
+  max-height: 230px;
+  overflow-y: auto;
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  left: 0;
+  top: 41px;
+  -webkit-border-bottom-right-radius: 12px;
+  -webkit-border-bottom-left-radius: 12px;
+  -moz-border-radius-bottomright: 12px;
+  -moz-border-radius-bottomleft: 12px;
+  border-bottom-right-radius: 12px;
+  border-bottom-left-radius: 12px;
+  &::-webkit-scrollbar{
+    width: 8px;
+    position: relative;
+    right: 0px;
+    background-color: #fff;
+  }
+  &::-webkit-scrollbar-thumb{
+    background-color: #0bc185;
+  }
+  &::-webkit-scrollbar-track-piece{
+    background-color: white;
+  }
+  ul {
+    li{
+      margin: 0;
+      padding: 12px;
+      text-indent: 15px;
+      font-size: 13px;
+      color: #777;
+      border-top: 1px solid #ccc3;
+      cursor: pointer;
+      &:nth-child(even){
+        background-color: #e0e0e0;
+      }
+      &:hover{
+        background-color: #ccc3;
+        -webkit-transition: .7s;
+        transition: .7s;
+        opacity: .6;
+      }
+    }
+  }
+}
+#button{
+  position: absolute!important;
+  top: 6px!important;
+  right: 6px!important;
+}

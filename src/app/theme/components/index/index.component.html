@@ -1,0 +1,51 @@
+<div class="content-lg">
+  <div class="inner-content">
+    <div class="case-block-container pull-left">
+      <!--<div class="status-buttons mg-bt-40">-->
+      <!--<button type="button" class="btn btn-sky-blue btn-responsive btn-round">В ожидании</button>-->
+      <!--&lt;!&ndash;<button type="button" class="btn btn-blue btn-responsive btn-round">Рассматриваются</button>&ndash;&gt;-->
+      <!--<button type="button" class="btn btn-blue btn-responsive btn-round">Завершенные</button>-->
+      <!--</div>-->
+      <div class="case-block-container pull-left" *ngIf="emptyAppointment" ><span class="note f-36">К сожалению у вас еще нет <br>пациентов</span></div>
+      <div class="case-block bordered mg-bt-40 active" *ngFor="let appointment of appointments; let i = index">
+        <div class="patient-info mg-bt-20">
+          <!-- // TODO: fix backgroundImage -->
+          <div class="pic-container"
+              [style.backgroundImage]="'url('+ Img_patient[i] +')'"
+               style="background-size: cover"></div>
+          <div>
+            <p class="f-14 bold"><span class="color-violet">{{appointment.first_name}} {{appointment.last_name}}</span>&nbsp;<span
+              class="color-mid-gray">({{appointment.age}} {{doctorCrudService.yearValue[i]}})</span>
+            </p>
+            <p class="f-12 color-mid-gray"><img src="assets/img/icons/callendar-icon.svg"> {{appointment.requestTime}}
+            </p>
+          </div>
+        </div>
+        <button
+          type="button"
+          class="btn btn-blue btn-responsive pull-right"
+          (click)="onNavigate(appointment)">
+          Подробнее
+        </button>
+        <div>
+          <p class="desease-text">{{appointment.message}}</p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="open-case-block-container pull-right">
+      <ng-container *ngIf="load==='empty'">
+        <div class="case-not-open-container">
+          <img src="assets/img/icons/cart.svg" class="mg-bt-30">
+          <p class="color-mid-gray f-16">Выберите дело, чтобы увидеть карту пациента.</p>
+        </div>
+      </ng-container>
+      <app-client-data [clearAppointment]="clearAppointment" [appointment]="selectedAppointment"
+                       *ngIf="selectedAppointment"></app-client-data>
+    </div>
+    <div class="clearfix">
+    </div>
+  </div>
+</div>
+<app-loader></app-loader>

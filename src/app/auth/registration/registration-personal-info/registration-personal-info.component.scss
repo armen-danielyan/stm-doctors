@@ -1,0 +1,140 @@
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+.errorInputColor {
+  color: red;
+}
+.profile-pic-container .choose-profile-pic-container {
+  height: 100%;
+  width: 100%;
+  background-color: #fafafa;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: cover;
+  position: relative;
+  border: solid 1px #e0e0e0;
+  border-radius: 50%;
+  input{
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: 9999;
+    bottom: 0;
+    left: 0;
+  }
+}
+//.profile-pic-container{
+//  width: 100px;
+//  height: 100px;
+//  border-radius: 50%;
+//  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv4FjZKvV2dOY5dBHmwWmEtKmqGvopr9ymtZDMs7-9GJ6-3Jyn);
+//  background-repeat: no-repeat;
+//  background-size: cover;
+//  background-color: #555555;
+//  margin: auto;
+//  margin-bottom: 15px;
+//}
+.pic-container{
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.txt-block{
+  position: relative;
+}
+.user-info-pic{
+  input{
+    background-color: rgba(45, 45, 36, 0.35);
+    color: white;
+    position: absolute;
+    bottom: 8px;
+    width: 80%;
+    height: 30%;
+
+  }
+}
+.delete-profile-pic-block{
+  text-align: center;
+  top: -25px;
+  position: relative;
+  color: white;
+  font-size: 13px;
+}
+.gotCities{
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-top: none;
+  max-height: 230px;
+  overflow-y: auto;
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  left: 0;
+  top: 41px;
+  -webkit-border-bottom-right-radius: 12px;
+  -webkit-border-bottom-left-radius: 12px;
+  -moz-border-radius-bottomright: 12px;
+  -moz-border-radius-bottomleft: 12px;
+  border-bottom-right-radius: 12px;
+  border-bottom-left-radius: 12px;
+  &::-webkit-scrollbar{
+    width: 8px;
+    position: relative;
+    right: 0px;
+    background-color: #fff;
+  }
+  &::-webkit-scrollbar-thumb{
+    background-color: #0bc185;
+  }
+  &::-webkit-scrollbar-track-piece{
+    background-color: white;
+  }
+  ul {
+    li{
+      margin: 0;
+      padding: 12px;
+      text-indent: 15px;
+      font-size: 13px;
+      color: #777;
+      border-top: 1px solid #e0e0e0;
+      cursor: pointer;
+      &:nth-child(even){
+        background-color: #ccc3;
+      }
+      &:hover{
+        background-color: #ccc3;
+        -webkit-transition: .7s;
+        opacity: .6;
+      }
+    }
+  }
+}
+.user-info-pic{
+  .pic-container.hover {
+    &:hover{
+      &:after{
+        opacity: 0.2;
+        display: block;
+      }
+      .delete{
+        opacity: 1;
+        display: block;
+      }
+    }
+  }
+}
+.mat-form-field{
+  width: 100%;
+  text-align: center;
+  input{
+    text-align: center;
+  }
+}
+#button{
+  position: absolute!important;
+  top: 6px!important;
+  right: 6px!important;
+}

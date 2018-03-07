@@ -1,0 +1,224 @@
+<div class="content-lg">
+  <div class="inner-content">
+    <h3 class="content-title">Завершение протокола приёма</h3>
+    <div class="call-over-case-info-container">
+      <div class="open-case-block bordered">
+
+
+        <div class="force-overflow">
+          <div class="open-case-block-content">
+            <div class="open-case-block-content-item info-row bold">
+              <div class="color-mid-gray f-16 bold">Дата обращения</div>
+              <div class="color-title-gray bold">{{appointment.requestTime}}</div>
+            </div>
+            <div class="open-case-block-content-item info-row bold">
+              <div class="color-mid-gray f-16 bold">Пациент</div>
+              <div class="color-title-gray bold">
+                {{appointment.first_name}} {{appointment.last_name}}, {{data_patient }} ({{appointment.age}}  {{appointment.yearValue}})
+              </div>
+            </div>
+            <div class="open-case-block-content-item info-row bold">
+              <div class="color-mid-gray f-16 bold">Жалобы пациента</div>
+              <div class="color-title-gray bold">{{appointment.message}}</div>
+            </div>
+            <div class="open-case-block-content-item info-row bold">
+              <div class="color-mid-gray f-16 bold">Длительность протокола</div>
+              <div class="color-title-gray bold">{{appointment.chatTime}}</div>
+            </div>
+
+            <div class="open-case-block-content-item">
+              <p class="color-mid-gray f-16 bold mg-bt-20 pull-left">Отметки врача <img
+                src="assets/img/icons/question.svg"></p>
+              <div class="top-box"></div>
+              <editor [init]="{menubar: 'tools', branding: false, language_url : '../../../../assets/js/tinymce/ru.js'}" apiKey="f0ukj42hcyvzidgiuxjski1yvofl9ji7swa1koqi9knq0n1t" [(ngModel)]="chatmessageChat"></editor>
+            </div>
+
+            <div class="open-case-block-content-item">
+              <p class="color-mid-gray f-16 bold mg-bt-20 pull-left">Анамнез заболевания <img
+                src="assets/img/icons/question.svg"></p>
+              <div class="top-box"></div>
+              <editor [init]="{menubar: 'tools', branding: false, language_url : '../../../../assets/js/tinymce/ru.js'}"  [(ngModel)]="anamnesis"></editor>
+            </div>
+            <div class="open-case-block-content-item">
+              <p class="color-mid-gray f-16 bold mg-bt-20 pull-left">Объективные данные <img
+                src="assets/img/icons/question.svg"></p>
+              <div class="top-box"></div>
+              <editor [init]="{menubar: 'tools', branding: false, language_url : '../../../../assets/js/tinymce/ru.js'}" [(ngModel)]="objective_data"></editor>
+            </div>
+            <div class="form-group pa d-top-20">
+              <p class="color-mid-gray f-16 bold mg-bt-20">Диагноз по МКБ-10 <img src="assets/img/icons/question.svg">
+              </p>
+              <div class="form-group">
+                <div class="search-inp-container half" [ngClass]="{'border_red': MKB_10_ERROR}">
+                  <input type="text" placeholder="" ng-focus="focus=true"
+                         class="form-control search-inp" (input)="searchMkb10($event.target.value)"
+                         [(ngModel)]="valuMekb10">
+                  <div class="loader" *ngIf="!loader">
+                    <app-mini-loader></app-mini-loader>
+                  </div>
+                  <!--<a href="" class="add-medicine color-blue">Добавить</a>-->
+                </div>
+                <ul id="search-results" [ngStyle]="{'display':show_Mkb10}" class="select-options half">
+                  <li class="search-result" *ngFor="let m of Mkb10" (click)="addMkd10(m)">{{m.name}}</li>
+                </ul>
+              </div>
+              <div class="medicine-added-block" *ngIf="show_mkd10_show_selets">
+                <div class="item" *ngFor="let mkd of Mkd10_show_selets;let i = index "><span>{{mkd.name}}</span>
+                  <img src="assets/img/icons/delete-icon.svg" (click)="Delete_Mkd10_show_selets(i)">
+                </div>
+              </div>
+
+
+              <!--<div class="select-gray">-->
+              <!--<input type="text" placeholder=""  ng-focus="focus=true"-->
+              <!--class="form-control search-inp" (input)="search($event.target.value)">-->
+              <!---->
+              <!--&lt;!&ndash;<div class="form-control select-styled half"></div>&ndash;&gt;-->
+              <!--&lt;!&ndash;<ul class="select-options">&ndash;&gt;-->
+              <!--&lt;!&ndash;<li rel="">Потерян доступ к аккаунту</li>&ndash;&gt;-->
+              <!--&lt;!&ndash;<li rel="">Неизвестная проблема</li>&ndash;&gt;-->
+              <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+              <!--&lt;!&ndash;</div>&ndash;&gt;-->
+              <!--</div>-->
+
+              <div class="open-case-block-content-item">
+                <p class="color-mid-gray f-16 bold mg-bt-20 pull-left">Диагноз и заключение <img
+                  src="assets/img/icons/question.svg"></p>
+                <div class="top-box"></div>
+                <editor [init]="{menubar: 'tools', branding: false, language_url : '../../../../assets/js/tinymce/ru.js'}" [(ngModel)]="diagnosis"></editor>
+              </div>
+              <div class="open-case-block-content-item">
+                <p class="color-mid-gray f-16 bold mg-bt-20 pull-left">Рекомендации пациенту <img
+                  src="assets/img/icons/question.svg"></p>
+                <div class="top-box"></div>
+                <editor [init]="{menubar: 'tools', branding: false, language_url : '../../../../assets/js/tinymce/ru.js'}" [(ngModel)]="recommendations"></editor>
+              </div>
+
+
+              <div class="open-case-block-content-item">
+                <p class="color-mid-gray f-16 bold mg-bt-20">Лекарственные назначения <img
+                  src="assets/img/icons/question.svg"></p>
+                <div class="form-group">
+                  <div class="search-inp-container half" id="prdctSearch"  (click)="elective_medicines_ERROR = false">
+                    <input [ngClass]="{'border_red': elective_medicines_ERROR}" type="text" placeholder="" ng-focus="focus=true"
+                           class="form-control search-inp" (input)="searchDrugs($event.target.value)"
+                           [(ngModel)]="valuesDrugs">
+                    <div class="loader" *ngIf="!loader">
+                      <app-mini-loader></app-mini-loader>
+                    </div>
+                    <!--<a href="" class="add-medicine color-blue">Добавить</a>-->
+                  </div>
+                  <ul id="search-results" [ngStyle]="{'display':show_drugs}" class="select-options half">
+                    <li class="search-result" *ngFor="let d of drugs" (click)="selectDrugs(d)">{{d.name}}</li>
+                  </ul>
+                  
+                  <div class="drugs-routes">
+                  <div class="form-control select-styled select-styled-routes" (click)="manipulateRoutesDropdown()" [ngClass]="{'active ': isRoutesOpened}" >{{defaultRoute}}</div>
+                  <ul class="select-options"
+                      ([ngModel])="routes"
+                  >
+                    <li
+                      *ngFor="let route of routes"
+                      (click)="addDrugs(route)"
+                    >
+                      {{route.id}}</li>
+                  </ul>
+                  </div>
+               <!--   <select *ngIf="routes" [(ngModel)]="selectedRoute" (change)="addDrugs()" id="selectRoute">
+                    <option disabled [ngValue]="routes[0].id">{{routes[0].name}}</option>
+                    <option *ngFor="let route of routes.slice(1)" [ngValue]="route.id"> {{route.name}}</option>
+                  </select> -->
+                </div>
+
+                
+
+                <div class="medicine-added-block" *ngIf="show_elective_medicines">
+                  <div class="item" *ngFor="let medicines of elective_medicines;let i = index ">
+                    <span>{{medicines.name}} {{medicines.Route}}</span>
+                    <img src="assets/img/icons/delete-icon.svg" (click)="DeleteElective_medicines(i)">
+                  </div>
+                </div>
+              </div>
+
+              <!--<div class="open-case-block-content-item">-->
+              <!--<div class="form-group">-->
+              <!--<p class="color-mid-gray f-16 bold mg-bt-20">Нужен ли повторный приём <img-->
+              <!--src="assets/img/icons/question.svg"></p>-->
+
+              <!--<div class="other-appointment">-->
+              <!--<input type="text" name="" class="num">-->
+
+              <!--<div class="select-gray time-period">-->
+              <!--<div class="form-control select-styled"></div>-->
+              <!--<ul class="select-options">-->
+              <!--<li rel="">дней</li>-->
+              <!--<li rel="">недель</li>-->
+              <!--</ul>-->
+              <!--</div>-->
+              <!--<a href="" class="add-medicine color-blue">Добавить</a>-->
+              <!--</div>-->
+
+
+              <!--</div>-->
+              <!--</div>-->
+
+              <div class="open-case-block-content-item">
+                <p class="color-mid-gray f-16 bold mg-bt-20 pull-left">Заметки для коллег <img
+                  src="assets/img/icons/question.svg"></p>
+                <div class="top-box"></div>
+                <editor [init]="{menubar: 'tools', branding: false, language_url : '../../../../assets/js/tinymce/ru.js'}" [(ngModel)]="notes"></editor>
+              </div>
+
+              <div class="flex-row-center pad-top-20">
+                <div class="col_md_4">
+                  <button type="button" class="btn btn-sky-blue" data-toggle="modal" data-target="#alertModal"
+                          (click)="onSubmitData()">Отправить данные
+                  </button>
+                  <!--data-toggle="modal" data-target="#alertModal"-->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="alertModal" role="modal">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <div class="close"  id="cloase" data-dismiss="modal"><img src="../../assets/img/icons/close-modal.svg"></div>
+        <h4 class="modal-title alert-title text-center mg-bt-20"><img src="assets/img/icons/alert.svg">Внимание</h4>
+        <p class="color-title-gray mg-bt-40" *ngFor="let w of WarningsMessage" [innerHTML]="w.FullText">
+
+        </p>
+        <div class="end-call-btns clearfix">
+          <div class="checkbox-info mg-bt-15 pull-left">
+            <input type="checkbox" name="" (change)="Modale_True($event)">
+            <label>
+            </label>
+            <span class="color-title-gray" *ngIf="modale_false">Продолжить не взирая на рекомендации системы, под мою личную ответственность.</span>
+            <a><span class="color-green-teal text-underline" (click)="saveEpicrisis()" *ngIf="modale_true">Продолжить не взирая на рекомендации системы, под мою личную ответственность.</span></a>
+          </div>
+          <button type="button" class="btn btn-green modal-continue btn-responsive pull-right" data-dismiss="modal"
+                  *ngIf="modale_false">Исправить
+          </button>
+          <button type="button" class="btn btn-gray modal-continue btn-responsive pull-right" data-dismiss="modal"
+                  [disabled]="modale_true" *ngIf="modale_true">
+            Исправить
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

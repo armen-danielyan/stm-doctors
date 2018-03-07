@@ -1,0 +1,217 @@
+<div class="wrapper">
+  <div class="bg-container pull-left"></div>
+  <!-- Content -->
+  <div class="content pull-right">
+    <div class="inner-content">
+      <div class="back pull-left">
+        <!--<a href=""><img src="assets/img/icons/arrow-green.svg">Назад</a>-->
+      </div>
+      <app-language-switcher></app-language-switcher>
+      <div class="clearfix"></div>
+      <h3 class="content-title">
+        Регистрация
+      </h3>
+      <form #f="ngForm" (ngSubmit)="onSubmitProfile(f)">
+        <div class="form-group-container">
+          <h4 class="mg-bt-30 pull-left">Личная информация</h4>
+          <span class="pad-top-10 pull-right">шаг 2 из 4</span>
+          <div class="clearfix"></div>
+
+          <div class="user-info-pic mg-bt-30">
+            <div id="avatarHover" class="pic-container" [ngStyle]="{'background-image': 'url(' + url + ')'}">
+              <div
+                (click)="deletePhoto()"
+                class="delete">УДАЛИТЬ
+              </div>
+            </div>
+            <div class="txt-block">Вы можете загрузить
+              изображение в формате
+              JPG или PNG.
+              <button
+                type="button"
+                class="btn btn-green btn-responsive btn-round"
+                (click)="clickNoAddFileInput()"
+              >Выбрать файл
+              </button>
+              <input
+                class="hidden"
+                id="addFileInput"
+                type="file"
+                (change)="readUrl($event)"
+                ngModel
+                name="image"
+
+                accept=".jpg, .png, .jpeg"
+              >
+            </div>
+          </div>
+          <!--<div class="profile-pic-container">-->
+          <!--<div class="choose-profile-pic-container" [ngStyle]="{'background-image': 'url(' + url + ')'}">-->
+          <!--<div *ngIf="dow" class="profile-pic-block choose-profile-pic-block">-->
+          <!--<input-->
+          <!--type="file"-->
+          <!--(change)="readUrl($event)"-->
+          <!--accept=".jpg, .png, .jpeg"-->
+          <!--ngModel-->
+          <!--name="image"-->
+
+          <!--required>-->
+          <!--</div>-->
+          <!--</div>-->
+          <!--<div class="profile-pic-block delete-profile-pic-block"-->
+          <!--*ngIf="del" (click)="deletePhoto()">-->
+          <!--Удалить-->
+          <!--</div>-->
+          <!--<div class="profile-pic-block delete-profile-pic-block"-->
+          <!--*ngIf="edit" (change)="readUrl($event)">-->
+          <!--Изменить-->
+          <!--</div>-->
+          <!--</div>-->
+          <div class="form-group">
+            <input
+              [attr.disabled]=" profileDisabled  ? '' : null"
+              type="text"
+              class="form-control"
+              id="lastname"
+              placeholder="Фамилия *"
+              name="last_name"
+              required
+              ngModel
+              minlength="2"
+              #lname="ngModel"
+              [(ngModel)]="user.last_name">
+          </div>
+          <div class="form-group">
+            <input
+              [attr.disabled]=" profileDisabled  ? '' : null"
+              type="text"
+              class="form-control"
+              id="firstname"
+              placeholder="Имя *"
+              name="first_name"
+              [(ngModel)]="user.first_name"
+              required
+              ngModel
+              minlength="2"
+              #fname="ngModel">
+          </div>
+          <div class="form-group">
+            <input
+              [attr.disabled]=" profileDisabled  ? '' : null"
+              type="text"
+              class="form-control"
+              id="patronymic"
+              placeholder="Отчество *"
+              name="mid_name"
+              [(ngModel)]="user.mid_name"
+              required
+              ngModel
+              minlength="2"
+              #mname="ngModel">
+          </div>
+          <div class="form-group">
+            <div class="select-gray">
+              <div class="form-control select-styled"
+                   (click)="isActive()">{{genderName}}
+              </div>
+              <ul class="select-options" [ngStyle]="active && {'display': 'block'}">
+                <li
+                  *ngFor="let gender of genders"
+                  (click)="onSelectedGender(gender.name, gender.id)"
+                  [id]="gender.id">{{gender.name}}
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="form-group">
+
+              <input
+                type="text"
+                matInput
+                appDatepickerMask
+                class="form-control"
+                [matDatepicker]="picker"
+                [max]="maxDate"
+                placeholder="Дата рождения *"
+                [attr.disabled]=" profileDisabled  ? '' : null"
+                id="birth-date"
+                name="birth_date"
+                [(ngModel)]="user.birth_date"
+                required
+                maxlength="10"
+                #bDay="ngModel"
+              >
+              <mat-datepicker-toggle id="button" matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker disabled="false"></mat-datepicker>
+            <!--<input-->
+            <!--[attr.disabled]=" profileDisabled  ? '' : null"-->
+            <!--type="date"-->
+            <!--class="form-control"-->
+            <!--id="birth-date"-->
+            <!--placeholder="Дата рождения / дд.мм.гггг"-->
+            <!--name="birth_date"-->
+            <!--[(ngModel)]="user.birth_date"-->
+            <!--max="2200-04-30"-->
+            <!--required-->
+            <!--#bDay="ngModel">-->
+          </div>
+          <div class="form-group">
+            <input
+              (input)="searchCountries($event.target.value)"
+              type="text"
+              class="form-control"
+              placeholder="Страна *"
+              name="country"
+              required
+              [(ngModel)]="citySearchText"
+              minlength="2"
+              #country="ngModel"
+            >
+            <div *ngIf="show_Countrie">
+              <div class="gotCities">
+                <ul>
+                  <li *ngFor="let c of Countries" (click)="getCountries(c.id,c.name)">{{c.name}}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <input
+              (input)="searchCity($event.target.value)"
+              type="text"
+              class="form-control"
+              id="city"
+              placeholder="Город *"
+              name="city"
+              [(ngModel)]="defaultCity"
+              required
+              ngModel
+              #lCity="ngModel"
+              minlength="2">
+            <div *ngIf="show_select_City">
+              <div class="gotCities">
+                <ul >
+                  <li *ngFor="let c of City" (click)="createCity(c)">{{c.name}}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="">
+          <hr>
+          <button
+            [disabled]="f.invalid"
+            type="submit" class="btn btn-green">Продолжить
+          </button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+  <div class="clearfix"></div>
+</div>
+<!--<footer class="footer">-->
+  <!--<div class="footer-inner">Doctor Smart ©2017</div>-->
+<!--</footer>-->
+<app-footer></app-footer>

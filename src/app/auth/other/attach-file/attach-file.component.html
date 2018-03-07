@@ -1,0 +1,235 @@
+<div class="wrapper">
+  <div class="bg-container small pull-left"></div>
+  <!-- Content -->
+  <div class="content full pull-right">
+    <div class="inner-content">
+      <div class="back pull-left">
+        <!--<a [routerLink]="['/registration-step-3']"><img src="assets/img/icons/arrow-green.svg">Назад</a>-->
+      </div>
+      <app-language-switcher></app-language-switcher>
+      <div class="clearfix"></div>
+      <h3 class="content-title">
+        Регистрация
+      </h3>
+      <div class="user-info row">
+        <div class="col_md_4">
+          <form>
+            <div class="form-group-container">
+              <h4>Паспорт гражданина РФ <span>*</span></h4>
+              <p *ngIf="passportUploads.length === 0" class="no-file">Вы еще не загрузили ни одного файла</p>
+
+              <div class="form-group file" *ngIf="passportUploads.length > 0">
+                <ng-container *ngFor="let upFile of passportUploads; let i = index">
+                  <div class="  form-group file">
+                    <div class="pull-left">
+                      <!--<img src="assets/img/icons/file-attached.svg" class="file-pic">-->
+                      <a id="passImg"
+                         data-toggle="modal"
+                         data-target="#openPhoto"
+                      >
+                        <div class="pic-file" [ngStyle]="{'background-image': 'url' + '(' + upFile.imageUrl + ')'}">
+                          <!--<img width="100%" [src]="upFile.imageUrl" alt="">-->
+                          <img src="assets/img/icons/search.svg" class="search-icon">
+                        </div>
+                      </a>
+                      <div class="file-info-container">
+                        <!--<p class="file-name">{{upFile.name}}</p>-->
+                        <!--<p class="file-info">{{upFile.format}}, {{upFile.size}} {{upFile.sizeOnBites}},-->
+                          <!--{{upFile.time}}-->
+                        <!--</p>-->
+                        <p class="file-info">
+                          {{upFile.time}}
+                        </p>
+                      </div>
+                    </div>
+                    <div class="options pull-left">
+                      <a [href]="upFile.imageUrl"
+                        target="_blank"><img class="imageCursor" src="assets/img/icons/eye.svg"></a>
+                      <img class="imageCursor" src="assets/img/icons/delete.svg"
+                           (click)="removeUploaded(i, 'passport', upFile.imageKey)">
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="modal fade" id="openPhoto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-body">
+                          <button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-times" aria-hidden="true"></i></button>
+                          <img style="width: 100%" [src]="upFile.imageUrl" alt="">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+
+              </div>
+              <div class="form-group file-upload">
+                <button
+                  type="button"
+                  class="btn btn-blue btn-add">Добавить файл или фото
+                </button>
+                <input
+                  (change)="passportUpload($event)"
+                  type="file"
+                  class="form-control"
+                  placeholder="Фамилия"
+                  accept=".jpg, .png, .jpeg, .pdf"
+                >
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col_md_4">
+          <form>
+            <div class="form-group-container">
+              <h4>Диплом мед. образования</h4>
+
+
+              <p *ngIf="diplomUploads.length === 0" class="no-file">Вы еще не загрузили ни одного файла</p>
+              <div class="form-group file" *ngIf="diplomUploads.length > 0">
+                <ng-container *ngFor="let upFile of diplomUploads; let i = index">
+                  <div class="  form-group file">
+                    <div class="pull-left">
+                      <a id="educationImg"
+                         data-toggle="modal"
+                         data-target="#openPhoto2"
+                      >
+                        <div class="pic-file" [ngStyle]="{'background-image': 'url' + '(' + upFile.imageUrl + ')'}">
+                          <!--<img width="100%" [src]="upFile.imageUrl" alt="">-->
+                          <img src="assets/img/icons/search.svg" class="search-icon">
+                        </div>
+                      </a>
+                      <div class="file-info-container">
+                        <!--<p class="file-name">{{upFile.name}}</p>-->
+                        <!--<p class="file-info">{{upFile.format}}, {{upFile.size}} {{upFile.sizeOnBites}},-->
+                          <!--{{upFile.time}}</p>-->
+                        <p class="file-info">
+                          {{upFile.time}}
+                        </p>
+                      </div>
+                    </div>
+                    <div class="options pull-left">
+                      <a [href]="upFile.imageUrl" target="_blank"><img class="imageCursor"
+                                                                       src="assets/img/icons/eye.svg"></a>
+                      <img class="imageCursor" src="assets/img/icons/delete.svg"
+                           (click)="removeUploaded(i, 'diploma', upFile.imageKey)">
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="modal fade" id="openPhoto2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-body">
+                          <button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-times" aria-hidden="true"></i></button>
+                          <img style="width: 100%" [src]="upFile.imageUrl" alt="">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+
+
+              </div>
+
+
+              <div class="form-group file-upload">
+                <button type="button" class="btn btn-blue btn-add">Добавить файл или фото</button>
+                <input
+                  type="file"
+                  class="form-control"
+                  placeholder="Фамилия"
+                  (change)="diplomUpload($event)"
+                  accept=".jpg, .png, .jpeg, .pdf"
+                >
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col_md_4">
+          <form>
+            <div class="form-group-container">
+              <h4>Дополнительные документы</h4>
+
+
+              <p *ngIf="additionalDocs.length === 0" class="no-file">Вы еще не загрузили ни одного файла</p>
+              <div class="form-group file" *ngIf="additionalDocs.length > 0">
+                <ng-container *ngFor="let upFile of additionalDocs; let i = index">
+                  <div class="  form-group file">
+                    <div class="pull-left">
+                      <a id="otherImg"
+                         data-toggle="modal"
+                         data-target="#openPhoto3"
+                      >
+                        <div class="pic-file" [ngStyle]="{'background-image': 'url' + '(' + upFile.imageUrl + ')'}">
+                          <!--<img width="100%" [src]="upFile.imageUrl" alt="">-->
+                          <img src="assets/img/icons/search.svg" class="search-icon">
+                        </div>
+                      </a>
+                      <div class="file-info-container">
+                        <!--<p class="file-name">{{upFile.name}}</p>-->
+                        <!--<p class="file-info">{{upFile.format}}, {{upFile.size}} {{upFile.sizeOnBites}},-->
+                          <!--{{upFile.time}}</p>-->
+                        <p class="file-info">
+                          {{upFile.time}}
+                        </p>
+                      </div>
+                    </div>
+                    <div class="options pull-left">
+                      <a [href]="upFile.imageUrl" target="_blank"><img class="imageCursor"
+                                                                       src="assets/img/icons/eye.svg"></a>
+                      <img class="imageCursor" src="assets/img/icons/delete.svg"
+                           (click)="removeUploaded(i, 'additional', upFile.imageKey)">
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="modal fade" id="openPhoto3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-body">
+                          <button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-times" aria-hidden="true"></i></button>
+                          <img style="width: 100%" [src]="upFile.imageUrl" alt="">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+              </div>
+
+              <div class="form-group file-upload">
+                <button type="button" class="btn btn-blue btn-add">Добавить файл или фото</button>
+                <input
+                  type="file"
+                  class="form-control"
+                  placeholder="Фамилия"
+                  (change)="additionalUpload($event)"
+                  accept=".jpg, .png, .jpeg, .pdf"
+                >
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="flex-row-center user-info-continue">
+        <div class="col_md_4">
+          <hr>
+          <button [disabled]="buttonSwitcher" type="button" class="btn btn-green" (click)="goNext()">Продолжить</button>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <div class="clearfix"></div>
+  <div class="footer-help-full full pull-right flex-row-center">
+    <div class="col_md_4">
+    </div>
+  </div>
+  <div class="clearfix"></div>
+</div>
+<footer class="footer full">
+  <div class="footer-inner">Doctor Smart ©2017</div>
+</footer>
+
